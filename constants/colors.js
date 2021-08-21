@@ -1,3 +1,3 @@
 export default {
-    mainColor: '#39bdd2'
+    mainColor: '#259db1'
 }
