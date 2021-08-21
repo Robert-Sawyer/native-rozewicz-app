@@ -1,9 +1,10 @@
 import React, {useState, useEffect, useCallback} from "react";
-import {FlatList, View, Text, Button, ActivityIndicator} from 'react-native';
+import {FlatList, View, Text, Button, ActivityIndicator, Platform} from 'react-native';
+import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {useDispatch, useSelector} from "react-redux";
 import PlaceItem from "../components/PlaceItem";
+import CustomHeaderButton from "../components/HeaderButton";
 import Colors from '../constants/colors'
-import {set} from "react-native-reanimated";
 
 const PlacesListScreen = (props) => {
 
@@ -61,7 +62,7 @@ const PlacesListScreen = (props) => {
     if (!isLoading && places.length === 0) {
         return (
             <View>
-                <Text>Nie znalezioo miejsc</Text>
+                <Text>Nie znaleziono miejsc</Text>
             </View>
         )
     }
@@ -76,6 +77,23 @@ const PlacesListScreen = (props) => {
         numColumns={2}
         />
     )
+}
+
+export const placesListOptions = navData => {
+    return {
+        headerTitle: 'Wszystkie miejsca',
+        headerLeft: () =>
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                <Item
+                    title='Menu'
+                    iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+                    onPress={() => {
+                        navData.navigation.toggleDrawer()
+                    }}
+                />
+            </HeaderButtons>
+
+    }
 }
 
 export default PlacesListScreen
