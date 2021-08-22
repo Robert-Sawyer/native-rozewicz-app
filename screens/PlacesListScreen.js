@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from "react";
-import {FlatList, View, Text, Button, ActivityIndicator, Platform} from 'react-native';
+import {FlatList, View, Text, Button, ActivityIndicator, Platform, StyleSheet} from 'react-native';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {useDispatch, useSelector} from "react-redux";
 import PlaceItem from "../components/PlaceItem";
@@ -51,31 +51,43 @@ const PlacesListScreen = (props) => {
         )
     }
 
-    if (error) {
-        return (
-            <View>
-                <Text>Cos poszło nie tak!</Text>
-            </View>
-        )
-    }
+    // if (error) {
+    //     return (
+    //         <View>
+    //             <Text>Cos poszło nie tak!</Text>
+    //         </View>
+    //     )
+    // }
 
-    if (!isLoading && places.length === 0) {
-        return (
-            <View>
-                <Text>Nie znaleziono miejsc</Text>
-            </View>
-        )
-    }
+    // if (!isLoading && places.length === 0) {
+    //     return (
+    //         <View>
+    //             <Text>Nie znaleziono miejsc</Text>
+    //         </View>
+    //     )
+    // }
 
     return (
-        <FlatList
-        onRefresh={loadPlaces}
-        refreshing={isRefreshing}
-        data={places}
-        keyExtractor={item => item.id}
-        renderItem={renderPlaceItem}
-        numColumns={2}
-        />
+        <View style={styles.container}>
+            <View style={styles.buttonContainer}>
+                <Button title='Przełącz na mapę' color={Colors.mainColor} onPress={() => {
+                    props.navigation.navigate('Map')
+                }}/>
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button title='Dodawanie miejsca' color={Colors.mainColor} onPress={() => {
+                    props.navigation.navigate('NewPlace')
+                }}/>
+            </View>
+            <FlatList
+                onRefresh={loadPlaces}
+                refreshing={isRefreshing}
+                data={places}
+                keyExtractor={item => item.id}
+                renderItem={renderPlaceItem}
+                numColumns={2}
+            />
+        </View>
     )
 }
 
@@ -95,5 +107,16 @@ export const placesListOptions = navData => {
 
     }
 }
+
+const styles = StyleSheet.create({
+    container: {},
+    buttonContainer: {
+        width: '100%',
+        marginVertical: 10,
+        paddingTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+})
 
 export default PlacesListScreen
