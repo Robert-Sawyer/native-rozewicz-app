@@ -4,6 +4,9 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer";
 import {Ionicons} from "@expo/vector-icons";
 import PlacesListScreen, {placesListOptions} from "../screens/PlacesListScreen";
+import MapScreen, {mapOptions} from "../screens/MapScreen";
+import SinglePlaceScreen, {singlePlaceOptions} from "../screens/SinglePlaceScreen";
+import AuthScreen, {authOptions} from "../screens/AuthScreen";
 import UserScreen, {userAccountOptions} from "../screens/UserScreen";
 import Colors from '../constants/colors'
 
@@ -24,6 +27,16 @@ export const PlacesNavigator = () => {
                 name='PlacesList'
                 component={PlacesListScreen}
                 options={placesListOptions}
+            />
+            <PlacesStackNavigator.Screen
+                name='Map'
+                component={MapScreen}
+                options={mapOptions}
+            />
+            <PlacesStackNavigator.Screen
+                name='SinglePlace'
+                component={SinglePlaceScreen}
+                options={singlePlaceOptions}
             />
         </PlacesStackNavigator.Navigator>
     )
@@ -85,5 +98,15 @@ export const MainNavigator = () => {
                 )
             }}/>
         </PlacesDrawerNavigator.Navigator>
+    )
+}
+
+const AuthStackNavigator = createStackNavigator()
+
+export const AuthNavigator = () => {
+    return (
+        <AuthStackNavigator.Navigator screenOptions={defaultNavOption}>
+            <AuthStackNavigator.Screen name='Auth' component={AuthScreen} options={authOptions}/>
+        </AuthStackNavigator.Navigator>
     )
 }
