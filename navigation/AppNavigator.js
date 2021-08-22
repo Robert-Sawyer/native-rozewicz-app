@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import {NavigationContainer} from "@react-navigation/native";
-import PlacesNavigator from "./PlacesNavigator";
+import {MainNavigator} from "./PlacesNavigator";
 
 const AppNavigator = () => {
 
@@ -10,7 +10,7 @@ const AppNavigator = () => {
 
     return (
         <NavigationContainer>
-            <PlacesNavigator/>
+            <MainNavigator/>
         </NavigationContainer>
     )
 }
