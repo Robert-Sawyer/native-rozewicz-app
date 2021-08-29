@@ -4,11 +4,14 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer";
 import {Ionicons} from "@expo/vector-icons";
 import PlacesListScreen, {placesListOptions} from "../screens/PlacesListScreen";
+import NewPlaceScreen from "../screens/NewPlaceScreen";
 import MapScreen, {mapOptions} from "../screens/MapScreen";
 import SinglePlaceScreen, {singlePlaceOptions} from "../screens/SinglePlaceScreen";
 import AuthScreen, {authOptions} from "../screens/AuthScreen";
 import UserScreen, {userAccountOptions} from "../screens/UserScreen";
 import Colors from '../constants/colors'
+import {useDispatch} from "react-redux";
+import * as authActions from '../store/actions/auth'
 
 const defaultNavOption = {
     headerStyle: {
@@ -38,6 +41,7 @@ export const PlacesNavigator = () => {
                 component={SinglePlaceScreen}
                 options={singlePlaceOptions}
             />
+            <PlacesStackNavigator.Screen name='NewPlace' component={NewPlaceScreen}/>
         </PlacesStackNavigator.Navigator>
     )
 }
@@ -60,6 +64,7 @@ export const UserNavigator = () => {
 const PlacesDrawerNavigator = createDrawerNavigator()
 
 export const MainNavigator = () => {
+    const dispatch = useDispatch()
     return (
         <PlacesDrawerNavigator.Navigator
             drawerContent={
@@ -69,6 +74,7 @@ export const MainNavigator = () => {
                             <SafeAreaView forceInset={{top: 'always', horizontal: 'never'}}>
                                 <DrawerItemList {...props}/>
                                 <Button title='Wyloguj' color={Colors.mainColor} onPress={() => {
+                                    dispatch(authActions.logout())
                                 }}/>
                             </SafeAreaView>
                         </View>
