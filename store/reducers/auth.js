@@ -9,9 +9,23 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTHENTICATE:
+            return {
+                token: action.token,
+                userId: action.userId,
+                didTryAutoLogin: true,
+            }
         case SET_DID_TRY_AUTOLOGIN:
+            return {
+                ...state,
+                didTryAutoLogin: true
+            }
         case LOGOUT:
-        default: return state
+            return {
+                ...initialState,
+                didTryAutoLogin: true
+            }
+        default:
+            return state
     }
 }
 
