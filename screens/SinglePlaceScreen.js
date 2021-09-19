@@ -1,6 +1,5 @@
 import React from 'react'
-import {View, ScrollView, Image, Text, StyleSheet} from "react-native";
-import MapPreview from "../components/MapPreview";
+import {View, ScrollView, Image, Text, Button, StyleSheet} from "react-native";
 import {useSelector} from "react-redux"
 import Colors from '../constants/colors'
 
@@ -11,25 +10,34 @@ const SinglePlaceScreen = props => {
 
     const selectedPlaceLocation = {lat: selectedPlace.latitude, lon: selectedPlace.longitude}
     const handleShowMap = () => {
-        props.navigation.navigate('Map', { readOnly: true, initialLocation: selectedPlaceLocation})
-    }
-
-    const coordinates = {
-        lat: selectedPlace.latitude,
-        lon: selectedPlace.longitude
+        props.navigation.navigate('Map', {
+            readOnly: true,
+            initialLocation: selectedPlaceLocation,
+            selectedPlace: selectedPlace
+        })
     }
 
     return (
-        <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
-            <Image style={styles.image} source={{uri: selectedPlace.image}}/>
-            <View style={styles.descriptionContainer}>
-                <Text style={styles.description}>{selectedPlace.description}</Text>
-            </View>
-            <View style={styles.locationContainer}>
-                <MapPreview coords={coordinates} style={styles.mapPreview} location={selectedPlaceLocation} onPress={handleShowMap}/>
-            </View>
+        <View style={styles.mainContainer}>
+            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+                <Image style={styles.image} source={{uri: selectedPlace.image}}/>
 
-        </ScrollView>
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.description}>{selectedPlace.description}</Text>
+                </View>
+
+                <View style={styles.buttonContainer}>
+                    <Button title='Zobacz na mapie' color={Colors.mainColor} onPress={handleShowMap}/>
+                </View>
+
+                <View style={styles.buttonContainer}>
+                    <Button title='Oznacz miejsce jako odwiedzone' color={Colors.mainColor} onPress={() => {
+                        console.log('Miejsce odwiedzone')
+                    }}/>
+                </View>
+
+            </ScrollView>
+        </View>
     )
 }
 
@@ -40,20 +48,26 @@ export const singlePlaceOptions = navData => {
 }
 
 const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+    },
+    scrollViewContainer: {
+        alignItems: 'center',
+        paddingBottom: 20,
+    },
     image: {
         width: '100%',
-        height: '30%',
-        minHeight: 270,
+        height: 350,
         backgroundColor: "#ccc"
     },
     descriptionContainer: {
-        marginVertical: 10,
-        paddingHorizontal: 12,
+        marginVertical: 25,
+        paddingHorizontal: 18,
     },
     description: {
-        fontSize: 17,
+        fontSize: 19,
         textAlign: 'center',
-        lineHeight: 22
+        lineHeight: 30,
     },
     locationContainer: {
         marginVertical: 20,
@@ -64,7 +78,7 @@ const styles = StyleSheet.create({
         elevation: 5,
         shadowColor: '#000',
         shadowOpacity: 0.26,
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: {width: 0, height: 2},
         shadowRadius: 8,
         backgroundColor: '#fff',
         borderRadius: 10,
@@ -72,16 +86,18 @@ const styles = StyleSheet.create({
     addressContainer: {
         padding: 20,
     },
-    // address: {
-    //     textAlign: 'center',
-    //     color: Colors.mainColor
-    // },
     mapPreview: {
         width: '100%',
         maxWidth: 350,
         height: 250,
         borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10
+        borderBottomRightRadius: 10,
+    },
+    buttonContainer: {
+        width: '100%',
+        marginVertical: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
 
