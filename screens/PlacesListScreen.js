@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from "react";
-import {FlatList, View, Text, Button, ActivityIndicator, Platform, StyleSheet} from 'react-native';
+import {FlatList, View, Button, ScrollView, Platform, StyleSheet} from 'react-native';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {useDispatch, useSelector} from "react-redux";
 import PlaceItem from "../components/PlaceItem";
@@ -43,51 +43,40 @@ const PlacesListScreen = (props) => {
     const renderPlaceItem = itemData => {
         return (
             <PlaceItem
-                title='tytuł'
+                title={itemData.item.title}
+                image={itemData.item.image}
                 imgHeight={'50%'}
                 detailsHeight={'25%'}
                 actionHeight={2}
+                onSelect={() => {
+                    props.navigation.navigate('SinglePlace', {
+                        placeId: itemData.item.id,
+                        placeName: itemData.item.title
+                    })
+                }}
             />
         )
     }
 
-    // if (error) {
-    //     return (
-    //         <View>
-    //             <Text>Cos poszło nie tak!</Text>
-    //         </View>
-    //     )
-    // }
-
-    // if (!isLoading && places.length === 0) {
-    //     return (
-    //         <View>
-    //             <Text>Nie znaleziono miejsc</Text>
-    //         </View>
-    //     )
-    // }
-
     return (
-        <View style={styles.container}>
-            <View style={styles.buttonContainer}>
-                <Button title='Przełącz na mapę' color={Colors.mainColor} onPress={() => {
-                    props.navigation.navigate('Map')
-                }}/>
+        <ScrollView>
+            <View style={styles.container}>
+                <View style={styles.buttonContainer}>
+                    <Button title='Przełącz na mapę' color={Colors.mainColor} onPress={() => {
+                        props.navigation.navigate('Map')
+                    }}/>
+                </View>
+                <View style={styles.placesContainer}>
+                    <FlatList
+                        onRefresh={loadPlaces}
+                        refreshing={isRefreshing}
+                        data={places}
+                        keyExtractor={item => item.id}
+                        renderItem={renderPlaceItem}
+                    />
+                </View>
             </View>
-            <View style={styles.buttonContainer}>
-                <Button title='Dodawanie miejsca' color={Colors.mainColor} onPress={() => {
-                    props.navigation.navigate('NewPlace')
-                }}/>
-            </View>
-            <FlatList
-                onRefresh={loadPlaces}
-                refreshing={isRefreshing}
-                data={places}
-                keyExtractor={item => item.id}
-                renderItem={renderPlaceItem}
-                numColumns={2}
-            />
-        </View>
+        </ScrollView>
     )
 }
 
@@ -109,13 +98,18 @@ export const placesListOptions = navData => {
 }
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        width: '100%'
+    },
     buttonContainer: {
         width: '100%',
         marginVertical: 10,
         paddingTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    placesContainer: {
+        flexDirection: 'column',
     }
 })
 
