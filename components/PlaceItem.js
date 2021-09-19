@@ -17,7 +17,7 @@ const PlaceItem = ({onSelect, imgHeight, image, title, detailsHeight, actionHeig
                         <Image style={styles.image} source={{uri: image}}/>
                     </View>
                     <View style={styles.details}>
-                        <Text style={styles.title} numberOfLines={1}>{title}</Text>
+                        <Text style={styles.title} numberOfLines={3}>{title}</Text>
                     </View>
                     <View style={{...styles.action, ...{height: actionHeight}}}>
                         {children}
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         padding: 10,
+        alignItems: 'center'
     },
     imgContainer: {
         width: 80,
@@ -47,13 +48,14 @@ const styles = StyleSheet.create({
     },
     details: {
         marginLeft: 10,
-        alignItems: 'center',
+        width: '75%',
+        alignItems: 'flex-start',
         justifyContent: 'center',
     },
     title: {
-        fontSize: 23,
-        letterSpacing: 1.5,
+        fontSize: 32,
         marginVertical: 3,
+        fontFamily: 'reenie-beanie',
     },
     action: {
         flexDirection: 'row',
