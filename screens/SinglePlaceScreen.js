@@ -22,6 +22,10 @@ const SinglePlaceScreen = props => {
             <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                 <Image style={styles.image} source={{uri: selectedPlace.image}}/>
 
+                <View style={styles.titleContainer}>
+                    <Text style={styles.title}>{selectedPlace.title}</Text>
+                </View>
+
                 <View style={styles.descriptionContainer}>
                     <Text style={styles.description}>{selectedPlace.description}</Text>
                 </View>
@@ -60,8 +64,20 @@ const styles = StyleSheet.create({
         height: 350,
         backgroundColor: "#ccc"
     },
+    titleContainer: {
+        marginTop: 20,
+        width: '80%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+        fontSize: 28,
+        textAlign: 'center',
+        fontFamily: 'roundulliard',
+        color: Colors.mainColor,
+    },
     descriptionContainer: {
-        marginVertical: 25,
+        marginVertical: 20,
         paddingHorizontal: 18,
     },
     description: {
