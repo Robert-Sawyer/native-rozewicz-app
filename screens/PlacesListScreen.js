@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from "react";
-import {FlatList, View, Button, ScrollView, Platform, StyleSheet} from 'react-native';
+import {FlatList, View, Button, SafeAreaView, Platform, StyleSheet} from 'react-native';
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {useDispatch, useSelector} from "react-redux";
 import PlaceItem from "../components/PlaceItem";
@@ -59,7 +59,7 @@ const PlacesListScreen = (props) => {
     }
 
     return (
-        <ScrollView>
+        <SafeAreaView>
             <View style={styles.container}>
                 <View style={styles.buttonContainer}>
                     <Button title='Przełącz na mapę' color={Colors.mainColor} onPress={() => {
@@ -68,6 +68,7 @@ const PlacesListScreen = (props) => {
                 </View>
                 <View style={styles.placesContainer}>
                     <FlatList
+                        contentContainerStyle={{ paddingBottom: 200 }}
                         onRefresh={loadPlaces}
                         refreshing={isRefreshing}
                         data={places}
@@ -76,7 +77,7 @@ const PlacesListScreen = (props) => {
                     />
                 </View>
             </View>
-        </ScrollView>
+        </SafeAreaView>
     )
 }
 
