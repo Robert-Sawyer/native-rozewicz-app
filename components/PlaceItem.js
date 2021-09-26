@@ -53,9 +53,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     title: {
-        fontSize: 32,
+        fontSize: 26,
         marginVertical: 3,
-        fontFamily: 'reenie-beanie',
+        letterSpacing: 1,
+        fontFamily: 'roundulliard',
     },
     action: {
         flexDirection: 'row',
