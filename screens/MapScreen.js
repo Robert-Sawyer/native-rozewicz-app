@@ -1,10 +1,9 @@
-import React, {useState, useEffect, useCallback} from 'react'
-import {View, Text, StyleSheet, Button, TouchableOpacity, Platform} from "react-native"
+import React, {useState} from 'react'
+import {View, Text, StyleSheet, Button, Platform} from "react-native"
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/HeaderButton";
 import Colors from "../constants/colors";
-import {Image} from "react-native-web";
 
 const MapScreen = props => {
 
@@ -40,18 +39,6 @@ const MapScreen = props => {
             lon: event.nativeEvent.coordinate.longitude
         })
     }
-
-    const handleSavePickedLocation = useCallback(() => {
-        if (!selectedLocation) {
-            return;
-        }
-        props.navigation.navigate('NewPlace', {pickedLocation: selectedLocation})
-
-    }, [selectedLocation])
-
-    useEffect(() => {
-        props.navigation.setParams({saveLocation: handleSavePickedLocation})
-    }, [handleSavePickedLocation])
 
     let markerCoordinates
 
@@ -91,7 +78,6 @@ const MapScreen = props => {
                             <View style={styles.tooltip}>
                                 <Text style={styles.tooltipTitle}>{placeTooltipTitle}</Text>
                                 <Text style={styles.tooltipDesc}>{placeTooltipDescription}</Text>
-                                {/*<Image source={{uri: placeData.image}}/>*/}
                                 <View style={styles.buttonContainer}>
                                     <Button title='Zobacz szczegóły' color={Colors.mainColor} onPress={() => {
                                         console.log('Miejsce odwiedzone')
@@ -180,27 +166,6 @@ const styles = StyleSheet.create({
     tooltipDesc: {
         textAlign: 'center'
     },
-    // arrow: {
-    //     width: 0,
-    //     height: 0,
-    //     borderTopColor: '#fff',
-    //     borderTopWidth: 16,
-    //     borderLeftColor: 'transparent',
-    //     borderLeftWidth: 16,
-    //     borderRightColor: 'transparent',
-    //     borderRightWidth: 16,
-    //     alignSelf: 'center',
-    //     marginBottom: 5,
-    //
-    // },
-    // arrowBorder: {
-    //     backgroundColor: 'transparent',
-    //     borderColor: 'transparent',
-    //     borderWidth: 16,
-    //     alignSelf: 'center',
-    //     borderTopColor: '#007a87',
-    //     marginTop: 0
-    // },
 
 })
 
