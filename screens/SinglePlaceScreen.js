@@ -17,6 +17,8 @@ const SinglePlaceScreen = props => {
         })
     }
 
+    const currentPlaceView = selectedPlace.currentView
+
     return (
         <View style={styles.mainContainer}>
             <ScrollView contentContainerStyle={styles.scrollViewContainer}>
@@ -33,6 +35,13 @@ const SinglePlaceScreen = props => {
                 <View style={styles.buttonContainer}>
                     <Button title='Zobacz na mapie' color={Colors.mainColor} onPress={handleShowMap}/>
                 </View>
+
+                {currentPlaceView &&
+                <View style={styles.currentPlaceContainer}>
+                    <Text style={styles.description}>Widok współczesny:</Text>
+                    <Image style={styles.imageCurrent} source={{uri: currentPlaceView}}/>
+                </View>
+                }
 
                 <View style={styles.buttonContainer}>
                     <Button title='Oznacz miejsce jako odwiedzone' color={Colors.mainColor} onPress={() => {
@@ -78,12 +87,25 @@ const styles = StyleSheet.create({
     },
     descriptionContainer: {
         marginVertical: 20,
-        paddingHorizontal: 18,
+        paddingHorizontal: 15,
     },
     description: {
-        fontSize: 19,
+        fontSize: 21,
         textAlign: 'center',
         lineHeight: 30,
+        fontFamily: 'roundulliard',
+        marginBottom: 8,
+    },
+    currentPlaceContainer: {
+        width: '90%',
+        alignItems: 'center'
+    },
+    imageCurrent: {
+        width: '100%',
+        height: 280,
+        borderWidth: 9,
+        borderRadius: 25,
+        borderColor: Colors.mainColor,
     },
     locationContainer: {
         marginVertical: 20,
@@ -111,7 +133,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: '100%',
-        marginVertical: 10,
+        marginVertical: 15,
         justifyContent: 'center',
         alignItems: 'center',
     },
