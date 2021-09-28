@@ -18,7 +18,12 @@ const defaultNavOption = {
     headerStyle: {
         backgroundColor: Platform.OS === 'android' ? Colors.mainColor : ''
     },
-    headerTintColor: Platform.OS === 'android' ? '#fff' : Colors.mainColor
+    headerTintColor: Platform.OS === 'android' ? '#fff' : Colors.mainColor,
+    headerTitleStyle: {
+        fontFamily: 'roundulliard',
+        fontSize: 26,
+        letterSpacing: 1,
+    }
 }
 
 const PlacesStackNavigator = createStackNavigator()
