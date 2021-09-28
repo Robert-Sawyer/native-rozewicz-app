@@ -4,9 +4,10 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer";
 import {Ionicons} from "@expo/vector-icons";
 import PlacesListScreen, {placesListOptions} from "../screens/PlacesListScreen";
-import NewPlaceScreen from "../screens/NewPlaceScreen";
+import NewPlaceScreen, {newPlaceOptions} from "../screens/NewPlaceScreen";
 import MapScreen, {mapOptions} from "../screens/MapScreen";
 import SinglePlaceScreen, {singlePlaceOptions} from "../screens/SinglePlaceScreen";
+import AllPlacesMapScreen, {allPlacesMapOptions} from "../screens/AllPlacesMapScreen";
 import AuthScreen, {authOptions} from "../screens/AuthScreen";
 import UserScreen, {userAccountOptions} from "../screens/UserScreen";
 import Colors from '../constants/colors'
@@ -41,7 +42,12 @@ export const PlacesNavigator = () => {
                 component={SinglePlaceScreen}
                 options={singlePlaceOptions}
             />
-            <PlacesStackNavigator.Screen name='NewPlace' component={NewPlaceScreen}/>
+            <PlacesStackNavigator.Screen
+                name='AllPlacesMap'
+                component={AllPlacesMapScreen}
+                options={allPlacesMapOptions}
+            />
+            <PlacesStackNavigator.Screen name='NewPlace' component={NewPlaceScreen} options={newPlaceOptions}/>
         </PlacesStackNavigator.Navigator>
     )
 }
