@@ -56,55 +56,50 @@ const MapScreen = props => {
                     props.navigation.navigate('PlacesList')
                 }}/>
             </View>
-            <View style={styles.instructionContainer}>
-                <Text style={styles.instruction}>Kliknij na wyróżnione miejsce na mapie aby poznać szczegóły.</Text>
+            <View style={styles.buttonContainer}>
+                <Button title='Zobacz wszystkie na mapie' color={Colors.mainColor} onPress={() => {
+                    props.navigation.navigate('AllPlacesMap')
+                }}/>
             </View>
-            <MapView style={styles.map} region={mapRegion} onPress={handleSelectLocation} provider={PROVIDER_GOOGLE}>
-                {
-                    markerCoordinates &&
-                    <Marker
-                        title={placeData.title}
-                        description={placeData.description.substring(0, 20)}
-                        coordinate={markerCoordinates}
-                        image={require('../assets/place.png')}
-                        onPress={() => {
-                        }}
-                    >
-                        <Callout tooltip onPress={() => {
-                            props.navigation.navigate('SinglePlace', {
-                                placeId: placeData.id
-                            })
-                        }}>
-                            <View style={styles.tooltip}>
-                                <Text style={styles.tooltipTitle}>{placeTooltipTitle}</Text>
-                                <Text style={styles.tooltipDesc}>{placeTooltipDescription}</Text>
-                                <View style={styles.buttonContainer}>
-                                    <Button title='Zobacz szczegóły' color={Colors.mainColor} onPress={() => {
-                                        console.log('Miejsce odwiedzone')
-                                    }}/>
+            <View style={styles.mapViewContainer}>
+                <MapView style={styles.map} region={mapRegion} onPress={handleSelectLocation}
+                         provider={PROVIDER_GOOGLE}>
+                    {
+                        markerCoordinates &&
+                        <Marker
+                            title={placeData.title}
+                            description={placeData.description.substring(0, 20)}
+                            coordinate={markerCoordinates}
+                            image={require('../assets/place.png')}
+                            onPress={() => {
+                            }}
+                        >
+                            <Callout tooltip onPress={() => {
+                                props.navigation.navigate('SinglePlace', {
+                                    placeId: placeData.id
+                                })
+                            }}>
+                                <View style={styles.tooltip}>
+                                    <Text style={styles.tooltipTitle}>{placeTooltipTitle}</Text>
+                                    <Text style={styles.tooltipDesc}>{placeTooltipDescription}</Text>
+                                    <View style={styles.buttonContainer}>
+                                        <Button title='Zobacz szczegóły' color={Colors.mainColor} onPress={() => {
+                                            console.log('Miejsce odwiedzone')
+                                        }}/>
+                                    </View>
                                 </View>
-                            </View>
-                        </Callout>
-                    </Marker>
-                }
-            </MapView>
+                            </Callout>
+                        </Marker>
+                    }
+                </MapView>
+            </View>
         </View>
     )
 }
 
 export const mapOptions = navData => {
     return {
-        headerTitle: 'Mapa miejsc',
-        headerLeft: () =>
-            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                <Item
-                    title='Menu'
-                    iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-                    onPress={() => {
-                        navData.navigation.toggleDrawer()
-                    }}
-                />
-            </HeaderButtons>
+        headerTitle: navData.route.params ? navData.route.params.selectedPlace.title : null
     }
 }
 
@@ -114,36 +109,24 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: '100%',
-        marginVertical: 8,
+        marginVertical: 4,
         paddingTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    instructionContainer: {
-        width: '80%',
-    },
-    instruction: {
-        textAlign: 'center',
-        fontSize: 17,
+    mapViewContainer: {
+        width: '95%',
+        height: 550,
+        marginTop: 10,
+        borderColor: Colors.mainColor,
+        borderWidth: 6,
+        borderRadius: 9,
     },
     map: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: 'black',
-        borderWidth: 1,
-        height: 550,
-        width: '95%',
-        position: 'absolute',
-        top: 120,
-    },
-    headerButton: {
-        marginHorizontal: 20,
-        paddingRight: 5,
-    },
-    headerButtonText: {
-        fontSize: 16,
-        color: Platform.OS === 'android' ? '#fff' : Colors.mainColor
+        borderRadius: 15,
+        height: '100%',
+        width: '100%',
     },
     tooltip: {
         width: 300,

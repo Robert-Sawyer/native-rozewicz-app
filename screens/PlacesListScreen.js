@@ -63,7 +63,7 @@ const PlacesListScreen = (props) => {
             <View style={styles.container}>
                 <View style={styles.buttonContainer}>
                     <Button title='Przełącz na mapę' color={Colors.mainColor} onPress={() => {
-                        props.navigation.navigate('Map')
+                        props.navigation.navigate('AllPlacesMap')
                     }}/>
                 </View>
                 <View style={styles.placesContainer}>
