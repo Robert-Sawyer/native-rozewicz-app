@@ -20,8 +20,6 @@ const fetchFonts = () => {
         Font.loadAsync({
             'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
             'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-            'reenie-beanie': require('./assets/fonts/ReenieBeanie-Regular.ttf'),
-            'allura': require('./assets/fonts/Allura-Regular.ttf'),
             'roundulliard': require('./assets/fonts/Rondouillard.otf')
         })
     )
