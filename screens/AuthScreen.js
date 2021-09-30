@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useReducer, useCallback} from 'react'
 import {useDispatch} from "react-redux";
-import {ScrollView, View, Button, StyleSheet, ActivityIndicator, Text, Alert} from'react-native'
+import {ScrollView, View, Button, StyleSheet, ActivityIndicator, Image, Alert} from 'react-native'
 import {LinearGradient} from "expo-linear-gradient";
 import Input from "../components/UI/Input";
 import Colors from '../constants/colors'
@@ -85,53 +85,55 @@ const AuthScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <LinearGradient colors={['#ba0f59', '#3874ce']} style={styles.gradient}>
-                <View style={styles.cardItem}>
-                    <ScrollView>
-                        <Input
-                            id='email'
-                            label='E-Mail'
-                            keyboardType='email-address'
-                            required
-                            email
-                            autoCapitalize='none'
-                            errorText='Wprowadź poprawny e-mail'
-                            onInputChange={handleInputChange}
-                            initialValue=''
-                        />
-                        <Input
-                            id='password'
-                            label='Hasło'
-                            keyboardType='default'
-                            secureTextEntry
-                            required
-                            minLength={5}
-                            autoCapitalize='none'
-                            errorText='Wprowadź poprawne hasło'
-                            onInputChange={handleInputChange}
-                            initialValue=''
-                        />
-                        <View style={styles.buttonContainer}>
-                            {isLoading
-                                ? <ActivityIndicator color={Colors.headerColor} size='small'/>
-                                : <Button
-                                    color={Colors.headerColor}
-                                    title={isSignUp ? 'Zaloguj' : 'Zarejestruj'}
-                                    onPress={handleAuth}
-                                />}
+            {/*<View style={styles.imageContainer}>*/}
+            {/*    <Image style={styles.image} source={{uri: 'http://fik.com.pl/wp-content/uploads/2021/01/fik.png'}}/>*/}
+            {/*</View>*/}
+            <View style={styles.cardItem}>
+                <View style={styles.inputsContainer}>
+                    <Input
+                        id='email'
+                        label='E-Mail'
+                        keyboardType='email-address'
+                        required
+                        email
+                        autoCapitalize='none'
+                        errorText='Wprowadź poprawny e-mail'
+                        onInputChange={handleInputChange}
+                        initialValue=''
+                    />
+                    <Input
+                        id='password'
+                        label='Hasło'
+                        keyboardType='default'
+                        secureTextEntry
+                        required
+                        minLength={5}
+                        autoCapitalize='none'
+                        errorText='Wprowadź poprawne hasło'
+                        onInputChange={handleInputChange}
+                        initialValue=''
+                    />
+                    <View style={styles.buttonContainer}>
+                        {isLoading
+                            ? <ActivityIndicator color={Colors.headerColor} size='small'/>
+                            : <Button
+                                color={Colors.headerColor}
+                                title={isSignUp ? 'Zaloguj' : 'Zarejestruj'}
+                                onPress={handleAuth}
+                            />}
 
-                        </View>
-                        <View style={styles.buttonContainer}>
-                            <Button
-                                color={Colors.mainColor}
-                                title={isSignUp ? 'Nie mam jeszcze konta' : 'Przejdź do logowania'}
-                                onPress={() => {
-                                    setIsSignUp(prevState => !prevState)
-                                }}/>
-                        </View>
-                    </ScrollView>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button
+                            color={Colors.mainColor}
+                            title={isSignUp ? 'Nie mam jeszcze konta' : 'Przejdź do logowania'}
+                            onPress={() => {
+                                setIsSignUp(prevState => !prevState)
+                            }}/>
+                    </View>
                 </View>
-            </LinearGradient>
+
+            </View>
         </View>
     )
 }
@@ -145,11 +147,25 @@ export const authOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: Colors.authScreenColor,
+    },
+    imageContainer: {
+        width: 260,
+        height: 150,
+        marginVertical: 40,
+        alignItems: 'center'
+    },
+    image: {
+        width: '70%',
+        height: '70%'
     },
     cardItem: {
         width: '85%',
         maxWidth: 420,
         maxHeight: 400,
+        marginTop: 100,
         paddingVertical: 20,
         shadowColor: '#000',
         shadowRadius: 8,
@@ -159,6 +175,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: '#fff',
         alignItems: 'center',
+    },
+    inputsContainer: {
+        width: '60%',
     },
     gradient: {
         flex: 1,
