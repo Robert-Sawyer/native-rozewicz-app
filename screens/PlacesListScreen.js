@@ -1,10 +1,10 @@
 import React from "react"
-import {FlatList, View, Button, SafeAreaView, Platform, StyleSheet} from 'react-native'
+import {FlatList, View, SafeAreaView, Platform, StyleSheet} from 'react-native'
 import {HeaderButtons, Item} from "react-navigation-header-buttons"
 import {useSelector} from "react-redux"
 import PlaceItem from "../components/PlaceItem"
 import CustomHeaderButton from "../components/HeaderButton"
-import Colors from '../constants/colors'
+import CustomButton from "../components/UI/CustomButton"
 
 const PlacesListScreen = (props) => {
 
@@ -31,14 +31,15 @@ const PlacesListScreen = (props) => {
     return (
         <SafeAreaView>
             <View style={styles.container}>
+
                 <View style={styles.buttonContainer}>
-                    <Button title='Przełącz na mapę' color={Colors.mainColor} onPress={() => {
+                    <CustomButton onSelect={() => {
                         props.navigation.navigate('AllPlacesMap')
-                    }}/>
+                    }}>Przełącz na mapę</CustomButton>
                 </View>
                 <View style={styles.placesContainer}>
                     <FlatList
-                        contentContainerStyle={{ paddingBottom: 200 }}
+                        contentContainerStyle={{ paddingBottom: 220 }}
                         data={places}
                         keyExtractor={item => item.id}
                         renderItem={renderPlaceItem}
@@ -72,8 +73,8 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: '100%',
-        marginVertical: 10,
-        paddingTop: 10,
+        height: 70,
+        paddingTop: 7,
         justifyContent: 'center',
         alignItems: 'center',
     },

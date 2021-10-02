@@ -1,7 +1,8 @@
 import React from 'react'
-import {View, ScrollView, Image, Text, Button, StyleSheet} from "react-native"
+import {View, ScrollView, Image, Text, StyleSheet} from "react-native"
 import {useSelector} from "react-redux"
 import Colors from '../constants/colors'
+import CustomButton from "../components/UI/CustomButton"
 
 const SinglePlaceScreen = props => {
 
@@ -15,6 +16,14 @@ const SinglePlaceScreen = props => {
             initialLocation: selectedPlaceLocation,
             selectedPlace: selectedPlace
         })
+    }
+
+    const setPlaceAsVisited = () => {
+        console.log("Miejsce", selectedPlace)
+        if (!selectedPlace.isVisited) {
+            selectedPlace.isVisited = true
+            console.log("Miejsce odwiedzone", selectedPlace.isVisited)
+        }
     }
 
     const currentPlaceView = selectedPlace.currentView
@@ -33,7 +42,7 @@ const SinglePlaceScreen = props => {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <Button title='Zobacz na mapie' color={Colors.mainColor} onPress={handleShowMap}/>
+                    <CustomButton onSelect={handleShowMap}>Zobacz na mapie</CustomButton>
                 </View>
 
                 {currentPlaceView &&
@@ -44,9 +53,7 @@ const SinglePlaceScreen = props => {
                 }
 
                 <View style={styles.buttonContainer}>
-                    <Button title='Oznacz miejsce jako odwiedzone' color={Colors.mainColor} onPress={() => {
-                        console.log('Miejsce odwiedzone')
-                    }}/>
+                    <CustomButton onSelect={setPlaceAsVisited}>Oznacz miejsce jako odwiedzone</CustomButton>
                 </View>
 
             </ScrollView>
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
         color: Colors.mainColor,
     },
     descriptionContainer: {
-        marginVertical: 20,
+        marginVertical: 17,
         paddingHorizontal: 15,
     },
     description: {
@@ -94,7 +101,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 30,
         fontFamily: 'roundulliard',
-        marginBottom: 8,
+        marginBottom: 6,
     },
     currentPlaceContainer: {
         width: '90%',
@@ -105,11 +112,13 @@ const styles = StyleSheet.create({
         height: 280,
         borderWidth: 9,
         borderRadius: 25,
+        marginBottom: 10,
         borderColor: Colors.mainColor,
     },
     buttonContainer: {
         width: '100%',
-        marginVertical: 15,
+        marginVertical: 5,
+        height: 70,
         justifyContent: 'center',
         alignItems: 'center',
     },

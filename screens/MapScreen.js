@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import {View, Text, StyleSheet, Button} from "react-native"
+import {View, Text, StyleSheet, Button, ScrollView} from "react-native"
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps"
 import Colors from "../constants/colors"
+import CustomButton from "../components/UI/CustomButton"
 
 const MapScreen = (props) => {
 
@@ -49,16 +50,18 @@ const MapScreen = (props) => {
 
     return (
         <View style={styles.mainContainer}>
+            <ScrollView>
             <View style={styles.buttonContainer}>
-                <Button title='Przejdź do listy' color={Colors.mainColor} onPress={() => {
+                <CustomButton onSelect={() => {
                     props.navigation.navigate('PlacesList')
-                }}/>
+                }}>Przejdź do listy</CustomButton>
             </View>
             <View style={styles.buttonContainer}>
-                <Button title='Zobacz wszystkie na mapie' color={Colors.mainColor} onPress={() => {
+                <CustomButton onSelect={() => {
                     props.navigation.navigate('AllPlacesMap')
-                }}/>
+                }}>Zobacz wszystkie na mapie</CustomButton>
             </View>
+            </ScrollView>
             <View style={styles.mapViewContainer}>
                 <MapView style={styles.map} region={mapRegion} onPress={handleSelectLocation}
                          provider={PROVIDER_GOOGLE}>
@@ -107,14 +110,13 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: '100%',
-        marginVertical: 4,
-        paddingTop: 10,
+        marginVertical: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
     mapViewContainer: {
         width: '95%',
-        height: 550,
+        height: 530,
         marginTop: 10,
         borderColor: Colors.mainColor,
         borderWidth: 6,

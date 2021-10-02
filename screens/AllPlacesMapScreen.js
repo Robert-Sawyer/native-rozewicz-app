@@ -1,18 +1,20 @@
 import React from 'react'
-import {Button, Platform, StyleSheet, Text, View} from 'react-native'
+import {ScrollView, Platform, StyleSheet, Text, View} from 'react-native'
 import {HeaderButtons, Item} from "react-navigation-header-buttons"
 import CustomHeaderButton from "../components/HeaderButton"
-import Colors from "../constants/colors"
+import CustomButton from "../components/UI/CustomButton"
 
 const AllPlacesMapScreen = (props) => {
 
     return (
         <View style={styles.mainContainer}>
-            <View style={styles.buttonContainer}>
-                <Button title='Przejdź do listy' color={Colors.mainColor} onPress={() => {
-                    props.navigation.navigate('PlacesList')
-                }}/>
-            </View>
+            <ScrollView>
+                <View style={styles.buttonContainer}>
+                    <CustomButton onSelect={() => {
+                        props.navigation.navigate('PlacesList')
+                    }}>Przejdź do listy</CustomButton>
+                </View>
+            </ScrollView>
             <View style={styles.instructionContainer}>
                 <Text style={styles.instruction}>Kliknij na wyróżnione miejsce na mapie aby poznać szczegóły.</Text>
             </View>
