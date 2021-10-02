@@ -1,17 +1,16 @@
 import React from 'react'
 import {Platform, View, Button, SafeAreaView} from 'react-native'
-import {createStackNavigator} from "@react-navigation/stack";
-import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer";
-import {Ionicons} from "@expo/vector-icons";
-import PlacesListScreen, {placesListOptions} from "../screens/PlacesListScreen";
-import NewPlaceScreen, {newPlaceOptions} from "../screens/NewPlaceScreen";
-import MapScreen, {mapOptions} from "../screens/MapScreen";
-import SinglePlaceScreen, {singlePlaceOptions} from "../screens/SinglePlaceScreen";
-import AllPlacesMapScreen, {allPlacesMapOptions} from "../screens/AllPlacesMapScreen";
-import AuthScreen, {authOptions} from "../screens/AuthScreen";
-import UserScreen, {userAccountOptions} from "../screens/UserScreen";
+import {createStackNavigator} from "@react-navigation/stack"
+import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer"
+import {Ionicons} from "@expo/vector-icons"
+import PlacesListScreen, {placesListOptions} from "../screens/PlacesListScreen"
+import MapScreen, {mapOptions} from "../screens/MapScreen"
+import SinglePlaceScreen, {singlePlaceOptions} from "../screens/SinglePlaceScreen"
+import AllPlacesMapScreen, {allPlacesMapOptions} from "../screens/AllPlacesMapScreen"
+import AuthScreen, {authOptions} from "../screens/AuthScreen"
+import UserScreen, {userAccountOptions} from "../screens/UserScreen"
 import Colors from '../constants/colors'
-import {useDispatch} from "react-redux";
+import {useDispatch} from "react-redux"
 import * as authActions from '../store/actions/auth'
 
 const defaultNavOption = {
@@ -52,7 +51,6 @@ export const PlacesNavigator = () => {
                 component={AllPlacesMapScreen}
                 options={allPlacesMapOptions}
             />
-            <PlacesStackNavigator.Screen name='NewPlace' component={NewPlaceScreen} options={newPlaceOptions}/>
         </PlacesStackNavigator.Navigator>
     )
 }
