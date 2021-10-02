@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, ScrollView, Image, Text, Button, StyleSheet} from "react-native";
+import {View, ScrollView, Image, Text, Button, StyleSheet} from "react-native"
 import {useSelector} from "react-redux"
 import Colors from '../constants/colors'
 
@@ -106,30 +106,6 @@ const styles = StyleSheet.create({
         borderWidth: 9,
         borderRadius: 25,
         borderColor: Colors.mainColor,
-    },
-    locationContainer: {
-        marginVertical: 20,
-        width: '90%',
-        maxWidth: 350,
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 5,
-        shadowColor: '#000',
-        shadowOpacity: 0.26,
-        shadowOffset: {width: 0, height: 2},
-        shadowRadius: 8,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-    },
-    addressContainer: {
-        padding: 20,
-    },
-    mapPreview: {
-        width: '100%',
-        maxWidth: 350,
-        height: 250,
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
     },
     buttonContainer: {
         width: '100%',

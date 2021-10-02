@@ -1,44 +1,14 @@
-import React, {useState, useEffect, useCallback} from "react";
-import {FlatList, View, Button, SafeAreaView, Platform, StyleSheet} from 'react-native';
-import {HeaderButtons, Item} from "react-navigation-header-buttons";
-import {useDispatch, useSelector} from "react-redux";
-import PlaceItem from "../components/PlaceItem";
-import CustomHeaderButton from "../components/HeaderButton";
+import React from "react"
+import {FlatList, View, Button, SafeAreaView, Platform, StyleSheet} from 'react-native'
+import {HeaderButtons, Item} from "react-navigation-header-buttons"
+import {useSelector} from "react-redux"
+import PlaceItem from "../components/PlaceItem"
+import CustomHeaderButton from "../components/HeaderButton"
 import Colors from '../constants/colors'
 
 const PlacesListScreen = (props) => {
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [isRefreshing, setIsRefreshing] = useState(false)
-    const [error, setError] = useState()
     const places = useSelector(state => state.places.places)
-    const dispatch = useDispatch()
-
-    const loadPlaces = useCallback(async () => {
-        setError(null)
-        setIsRefreshing(true)
-        try {
-            await dispatch(placesActions.fetchPlaces())
-        } catch (error) {
-            setError(error.message)
-        }
-        setIsRefreshing(false)
-    }, [dispatch, setIsLoading, setError])
-
-    useEffect(() => {
-        const unsubscribe = props.navigation.addListener('focus', loadPlaces)
-
-        return () => {
-            unsubscribe()
-        }
-    }, [loadPlaces])
-
-    useEffect(() => {
-        setIsLoading(true)
-        loadPlaces().then(() => {
-            setIsLoading(false)
-        })
-    }, [dispatch, loadPlaces])
 
     const renderPlaceItem = itemData => {
         return (
@@ -69,8 +39,6 @@ const PlacesListScreen = (props) => {
                 <View style={styles.placesContainer}>
                     <FlatList
                         contentContainerStyle={{ paddingBottom: 200 }}
-                        onRefresh={loadPlaces}
-                        refreshing={isRefreshing}
                         data={places}
                         keyExtractor={item => item.id}
                         renderItem={renderPlaceItem}

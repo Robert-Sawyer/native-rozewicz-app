@@ -1,10 +1,10 @@
 import React from 'react'
 import {Button, Platform, StyleSheet, Text, View} from 'react-native'
-import {HeaderButtons, Item} from "react-navigation-header-buttons";
-import CustomHeaderButton from "../components/HeaderButton";
-import Colors from "../constants/colors";
+import {HeaderButtons, Item} from "react-navigation-header-buttons"
+import CustomHeaderButton from "../components/HeaderButton"
+import Colors from "../constants/colors"
 
-const AllPlacesMapScreen = props => {
+const AllPlacesMapScreen = (props) => {
 
     return (
         <View style={styles.mainContainer}>

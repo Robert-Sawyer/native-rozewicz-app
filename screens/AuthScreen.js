@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useReducer, useCallback} from 'react'
 import {useDispatch} from "react-redux";
-import {ScrollView, View, Button, StyleSheet, ActivityIndicator, Image, Alert} from 'react-native'
-import {LinearGradient} from "expo-linear-gradient";
+import {View, Button, StyleSheet, ActivityIndicator, Alert} from 'react-native'
 import Input from "../components/UI/Input";
 import Colors from '../constants/colors'
 import * as authActions from '../store/actions/auth'
@@ -31,7 +30,7 @@ const formReducer = (state, action) => {
     return state
 }
 
-const AuthScreen = props => {
+const AuthScreen = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState()
@@ -61,7 +60,6 @@ const AuthScreen = props => {
         setIsLoading(true)
         try {
             await dispatch(action)
-            // props.navigation.navigate('Shop')
         } catch (e) {
             setError(e.message)
         }
@@ -85,9 +83,6 @@ const AuthScreen = props => {
 
     return (
         <View style={styles.screen}>
-            {/*<View style={styles.imageContainer}>*/}
-            {/*    <Image style={styles.image} source={{uri: 'http://fik.com.pl/wp-content/uploads/2021/01/fik.png'}}/>*/}
-            {/*</View>*/}
             <View style={styles.cardItem}>
                 <View style={styles.inputsContainer}>
                     <Input
@@ -115,9 +110,9 @@ const AuthScreen = props => {
                     />
                     <View style={styles.buttonContainer}>
                         {isLoading
-                            ? <ActivityIndicator color={Colors.headerColor} size='small'/>
+                            ? <ActivityIndicator color={Colors.mainColor} size='small'/>
                             : <Button
-                                color={Colors.headerColor}
+                                color={Colors.mainColor}
                                 title={isSignUp ? 'Zaloguj' : 'Zarejestruj'}
                                 onPress={handleAuth}
                             />}
@@ -151,16 +146,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: Colors.authScreenColor,
     },
-    imageContainer: {
-        width: 260,
-        height: 150,
-        marginVertical: 40,
-        alignItems: 'center'
-    },
-    image: {
-        width: '70%',
-        height: '70%'
-    },
     cardItem: {
         width: '85%',
         maxWidth: 420,
@@ -178,11 +163,6 @@ const styles = StyleSheet.create({
     },
     inputsContainer: {
         width: '60%',
-    },
-    gradient: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     buttonContainer: {
         marginVertical: 10,

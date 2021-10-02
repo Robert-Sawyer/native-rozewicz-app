@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
-import {View, Text, StyleSheet, Button, Platform} from "react-native"
-import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps";
-import {HeaderButtons, Item} from "react-navigation-header-buttons";
-import CustomHeaderButton from "../components/HeaderButton";
-import Colors from "../constants/colors";
+import {View, Text, StyleSheet, Button} from "react-native"
+import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps"
+import Colors from "../constants/colors"
 
-const MapScreen = props => {
+const MapScreen = (props) => {
 
     const placeLocation = props.route.params ? props.route.params.initialLocation : null
     const isReadOnly = props.route.params ? props.route.params.readOnly : null

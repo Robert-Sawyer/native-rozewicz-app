@@ -1,10 +1,10 @@
 import React from 'react'
 import {View, Text, Platform, StyleSheet} from 'react-native'
-import {HeaderButtons, Item} from "react-navigation-header-buttons";
+import {HeaderButtons, Item} from "react-navigation-header-buttons"
 import Colors from '../constants/colors'
-import CustomHeaderButton from "../components/HeaderButton";
+import CustomHeaderButton from "../components/HeaderButton"
 
-const UserScreen = props => {
+const UserScreen = () => {
 
     return (
         <View style={styles.mainContainer}>
