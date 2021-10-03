@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
-import {View, Text, StyleSheet, Button, ScrollView} from "react-native"
-import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps"
+import React from 'react'
+import { View, Text, StyleSheet, ScrollView } from "react-native"
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps"
 import Colors from "../constants/colors"
+import CommonStyles from '../constants/commonStyles'
 import CustomButton from "../components/UI/CustomButton"
 
 const MapScreen = (props) => {
 
     const placeLocation = props.route.params ? props.route.params.initialLocation : null
-    const isReadOnly = props.route.params ? props.route.params.readOnly : null
     const placeData = props.route.params ? props.route.params.selectedPlace : null
 
     const placeTooltipTitle =
@@ -20,32 +20,17 @@ const MapScreen = (props) => {
             ? placeData.description.substring(0, 62) + '...'
             : placeData.description
 
-    const [selectedLocation, setSelectedLocation] = useState(placeLocation)
 
     const mapRegion = {
         latitude: placeLocation ? placeLocation.lat : 51.067,
         longitude: placeLocation ? placeLocation.lon : 19.445,
         latitudeDelta: 0.005,
-        longitudeDelta: 0.015,
+        longitudeDelta: 0.008,
     }
 
-    const handleSelectLocation = event => {
-        if (isReadOnly) {
-            return;
-        }
-        setSelectedLocation({
-            lat: event.nativeEvent.coordinate.latitude,
-            lon: event.nativeEvent.coordinate.longitude
-        })
-    }
-
-    let markerCoordinates
-
-    if (selectedLocation) {
-        markerCoordinates = {
-            latitude: selectedLocation.lat,
-            longitude: selectedLocation.lon
-        }
+    const markerCoordinates = {
+        latitude: placeLocation.lat,
+        longitude: placeLocation.lon
     }
 
     return (
@@ -63,7 +48,7 @@ const MapScreen = (props) => {
             </View>
             </ScrollView>
             <View style={styles.mapViewContainer}>
-                <MapView style={styles.map} region={mapRegion} onPress={handleSelectLocation}
+                <MapView style={styles.map} region={mapRegion}
                          provider={PROVIDER_GOOGLE}>
                     {
                         markerCoordinates &&
@@ -84,9 +69,9 @@ const MapScreen = (props) => {
                                     <Text style={styles.tooltipTitle}>{placeTooltipTitle}</Text>
                                     <Text style={styles.tooltipDesc}>{placeTooltipDescription}</Text>
                                     <View style={styles.buttonContainer}>
-                                        <Button title='Zobacz szczegóły' color={Colors.mainColor} onPress={() => {
+                                        <CustomButton onSelect={() => {
                                             console.log('Miejsce odwiedzone')
-                                        }}/>
+                                        }}>Zobacz szczegóły</CustomButton>
                                     </View>
                                 </View>
                             </Callout>
@@ -128,28 +113,9 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
     },
-    tooltip: {
-        width: 300,
-        minHeight: 130,
-        backgroundColor: '#fff',
-        borderRadius: 25,
-        paddingVertical: 7,
-        paddingHorizontal: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderColor: Colors.mainColor,
-        borderWidth: 2.5,
-        marginBottom: 5,
-    },
-    tooltipTitle: {
-        fontSize: 17,
-        textAlign: 'center',
-        marginBottom: 5,
-    },
-    tooltipDesc: {
-        textAlign: 'center'
-    },
-
+    tooltip: CommonStyles.tooltip,
+    tooltipTitle: CommonStyles.tooltipTitle,
+    tooltipDesc: CommonStyles.tooltipDesc,
 })
 
 export default MapScreen
