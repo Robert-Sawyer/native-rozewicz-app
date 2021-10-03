@@ -1,18 +1,17 @@
 import React from 'react'
-import {View, ScrollView, Image, Text, StyleSheet} from "react-native"
-import {useSelector} from "react-redux"
+import { View, ScrollView, Image, Text, StyleSheet } from "react-native"
+import { places } from "../data/placesData"
 import Colors from '../constants/colors'
 import CustomButton from "../components/UI/CustomButton"
 
 const SinglePlaceScreen = props => {
 
     const placeId = props.route.params.placeId
-    const selectedPlace = useSelector(state => state.places.places.find(place => place.id === placeId))
+    const selectedPlace = places.find(place => place.id === placeId)
 
     const selectedPlaceLocation = {lat: selectedPlace.latitude, lon: selectedPlace.longitude}
     const handleShowMap = () => {
         props.navigation.navigate('Map', {
-            readOnly: true,
             initialLocation: selectedPlaceLocation,
             selectedPlace: selectedPlace
         })

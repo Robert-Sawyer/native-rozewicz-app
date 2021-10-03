@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useReducer, useCallback} from 'react'
-import {useDispatch} from "react-redux";
-import {View, Button, StyleSheet, ActivityIndicator, Alert} from 'react-native'
-import Input from "../components/UI/Input";
+import React, { useState, useEffect, useReducer, useCallback } from 'react'
+import { useDispatch } from "react-redux"
+import { View, Button, StyleSheet, ActivityIndicator, Alert } from 'react-native'
 import Colors from '../constants/colors'
+import Input from "../components/UI/Input"
 import * as authActions from '../store/actions/auth'
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE'

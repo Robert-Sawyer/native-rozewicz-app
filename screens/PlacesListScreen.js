@@ -1,27 +1,25 @@
 import React from "react"
-import {FlatList, View, SafeAreaView, Platform, StyleSheet} from 'react-native'
-import {HeaderButtons, Item} from "react-navigation-header-buttons"
-import {useSelector} from "react-redux"
+import { FlatList, View, SafeAreaView, Platform, StyleSheet } from 'react-native'
+import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { places } from "../data/placesData"
 import PlaceItem from "../components/PlaceItem"
 import CustomHeaderButton from "../components/HeaderButton"
 import CustomButton from "../components/UI/CustomButton"
 
 const PlacesListScreen = (props) => {
 
-    const places = useSelector(state => state.places.places)
-
-    const renderPlaceItem = itemData => {
+    const renderPlaceItem = placeData => {
         return (
             <PlaceItem
-                title={itemData.item.title}
-                image={itemData.item.image}
+                title={placeData.item.title}
+                image={placeData.item.image}
                 imgHeight={'50%'}
                 detailsHeight={'25%'}
                 actionHeight={2}
                 onSelect={() => {
                     props.navigation.navigate('SinglePlace', {
-                        placeId: itemData.item.id,
-                        placeName: itemData.item.title
+                        placeId: placeData.item.id,
+                        placeName: placeData.item.title
                     })
                 }}
             />
