@@ -32,7 +32,7 @@ const AllPlacesMapScreen = (props) => {
             : place.description
 
         return (
-            <Marker coordinate={coordinates} title={place.title} image={require('../assets/place.png')}
+            <Marker key={place.id} coordinate={coordinates} title={place.title} image={require('../assets/place.png')}
             >
                 <Callout tooltip onPress={() => {
                     props.navigation.navigate('SinglePlace', {
