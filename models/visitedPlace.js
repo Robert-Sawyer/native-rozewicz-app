@@ -1,6 +1,7 @@
 class VisitedPlace {
-    constructor(id, title) {
-        this.id = id
+    constructor(objId, plId, title) {
+        this.objId = objId
+        this.plId = plId
         this.title = title
     }
 }

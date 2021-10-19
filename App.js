@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
-import { createStore, combineReducers, applyMiddleware } from "redux"
-import { Provider } from "react-redux"
+import React, {useState} from 'react'
+import {createStore, combineReducers, applyMiddleware} from "redux"
+import {Provider} from "react-redux"
 import Thunk from 'redux-thunk'
 import * as Font from 'expo-font'
 import AppLoading from "expo-app-loading"
 import authReducer from "./store/reducers/auth"
 import AppNavigator from "./navigation/AppNavigator"
+import {MainNavigator} from "./navigation/PlacesNavigator";
+import {NavigationContainer} from "@react-navigation/native";
+import placesReducer from "./store/reducers/places";
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    places: placesReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(Thunk))
@@ -38,9 +42,12 @@ export default function App() {
             />
         )
     }
-  return (
-      <Provider store={store}>
-          <AppNavigator/>
-      </Provider>
-  );
+    return (
+        <Provider store={store}>
+            {/*<NavigationContainer>*/}
+            {/*    <MainNavigator/>*/}
+            {/*</NavigationContainer>*/}
+            <AppNavigator/>
+        </Provider>
+    );
 }
