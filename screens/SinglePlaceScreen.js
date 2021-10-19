@@ -1,15 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, ScrollView, Image, Text, StyleSheet } from "react-native"
+import {useDispatch, useSelector} from "react-redux"
 import { places } from "../data/placesData"
 import Colors from '../constants/colors'
 import CustomButton from "../components/UI/CustomButton"
+import * as actions from '../store/actions/places'
 
 const SinglePlaceScreen = props => {
 
     const placeId = props.route.params.placeId
-    const selectedPlace = places.find(place => place.id === placeId)
+    const objectId = visitedPlaces.find(element => element.plId === placeId).objId
+    const placeName = props.route.params.placeName
+    const selectedPlace = places.find(place => place.plId === placeId)
+    const dispatch = useDispatch()
+    const visitedPlaces = useSelector(state => state.places.visitedPlaces)
+    const isVisited = visitedPlaces.map(place => place.plId).includes(placeId)
+    console.log('isvis', isVisited)
 
     const selectedPlaceLocation = {lat: selectedPlace.latitude, lon: selectedPlace.longitude}
+
     const handleShowMap = () => {
         props.navigation.navigate('Map', {
             initialLocation: selectedPlaceLocation,
@@ -19,10 +28,16 @@ const SinglePlaceScreen = props => {
 
     const setPlaceAsVisited = () => {
         console.log("Miejsce", selectedPlace)
-        if (!selectedPlace.isVisited) {
-            selectedPlace.isVisited = true
-            console.log("Miejsce odwiedzone", selectedPlace.isVisited)
+
+        const visitedPlace = {
+            id: placeId,
+            placeName: placeName
         }
+        dispatch(actions.setPlaceAsVisited(visitedPlace))
+    }
+
+    const setPlaceAsUnvisited = (objId) => {
+        dispatch(actions.deletePlace(objId))
     }
 
     const currentPlaceView = selectedPlace.currentView
@@ -51,9 +66,16 @@ const SinglePlaceScreen = props => {
                 </View>
                 }
 
-                <View style={styles.buttonContainer}>
-                    <CustomButton onSelect={setPlaceAsVisited}>Oznacz miejsce jako odwiedzone</CustomButton>
-                </View>
+                {!isVisited ? (
+                    <View style={styles.buttonContainer}>
+                        <CustomButton onSelect={setPlaceAsVisited}>Oznacz miejsce jako odwiedzone</CustomButton>
+                    </View>
+                ) : (
+                    <View style={styles.buttonContainer}>
+                        <CustomButton onSelect={setPlaceAsUnvisited.bind(this, objectId)}>Oznacz miejsce jako nieodwiedzone</CustomButton>
+                    </View>
+                )
+                }
 
             </ScrollView>
         </View>

@@ -34,7 +34,7 @@ const AuthScreen = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState()
-    const [isSignUp, setIsSignUp] = useState(false)
+    const [isSignUp, setIsSignUp] = useState(true)
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
             email: '',
@@ -52,9 +52,9 @@ const AuthScreen = () => {
     const handleAuth = async () => {
         let action
         if (isSignUp) {
-            action = authActions.login(formState.inputValues.email, formState.inputValues.password)
+            action = authActions.login(formState.inputValues.email.trim(), formState.inputValues.password.trim())
         } else {
-            action = authActions.signup(formState.inputValues.email, formState.inputValues.password)
+            action = authActions.signup(formState.inputValues.email.trim(), formState.inputValues.password.trim())
         }
         setError(null)
         setIsLoading(true)
@@ -66,11 +66,11 @@ const AuthScreen = () => {
         setIsLoading(false)
     }
 
-    useEffect(() => {
-        if (error) {
-            Alert.alert('Błąd', error, [{text: 'OK'}])
-        }
-    }, [error])
+    // useEffect(() => {
+    //     if (error) {
+    //         Alert.alert('Błąd', error, [{text: 'OK'}])
+    //     }
+    // }, [error])
 
     const handleInputChange = useCallback((inputId, inputValue, inputValidity) => {
         dispatchFormState({
@@ -82,6 +82,7 @@ const AuthScreen = () => {
     }, [dispatchFormState])
 
     return (
+
         <View style={styles.screen}>
             <View style={styles.cardItem}>
                 <View style={styles.inputsContainer}>
@@ -127,7 +128,6 @@ const AuthScreen = () => {
                             }}/>
                     </View>
                 </View>
-
             </View>
         </View>
     )
@@ -135,7 +135,7 @@ const AuthScreen = () => {
 
 export const authOptions = navData => {
     return {
-        headerTitle: 'Logowanie / rejestracja'
+        headerTitle: 'Logowanie / Rejestracja'
     }
 }
 
@@ -143,14 +143,13 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         backgroundColor: Colors.authScreenColor,
     },
     cardItem: {
         width: '85%',
         maxWidth: 420,
         maxHeight: 400,
-        marginTop: 100,
         paddingVertical: 20,
         shadowColor: '#000',
         shadowRadius: 8,
