@@ -65,7 +65,7 @@ const UserScreen = (props) => {
                                 image={placeData.item.image}
                                 onSelect={() => {
                                     props.navigation.navigate('SinglePlace', {
-                                        placeId: placeData.item.plId,
+                                        placeId: placeData.item.id,
                                         placeName: placeData.item.title
                                     })
                                 }}
@@ -88,7 +88,7 @@ const UserScreen = (props) => {
                                 image={placeData.item.image}
                                 onSelect={() => {
                                     props.navigation.navigate('SinglePlace', {
-                                        placeId: placeData.item.plId,
+                                        placeId: placeData.item.id,
                                         placeName: placeData.item.title
                                     })
                                 }}

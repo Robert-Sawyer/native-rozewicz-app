@@ -9,13 +9,12 @@ import * as actions from '../store/actions/places'
 const SinglePlaceScreen = props => {
 
     const placeId = props.route.params.placeId
-    const objectId = visitedPlaces.find(element => element.plId === placeId).objId
-    const placeName = props.route.params.placeName
-    const selectedPlace = places.find(place => place.plId === placeId)
-    const dispatch = useDispatch()
     const visitedPlaces = useSelector(state => state.places.visitedPlaces)
+    const placeName = props.route.params.placeName
+    const selectedPlace = places.find(place => place.id === placeId)
+    const dispatch = useDispatch()
     const isVisited = visitedPlaces.map(place => place.plId).includes(placeId)
-    console.log('isvis', isVisited)
+    const objectId = isVisited ? visitedPlaces.find(element => element.plId === placeId).objId : null
 
     const selectedPlaceLocation = {lat: selectedPlace.latitude, lon: selectedPlace.longitude}
 
