@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer, useCallback } from 'react'
 import { useDispatch } from "react-redux"
-import { View, Button, StyleSheet, ActivityIndicator, Alert } from 'react-native'
+import { View, Button, StyleSheet, ActivityIndicator, Alert, ScrollView } from 'react-native'
 import Colors from '../constants/colors'
 import Input from "../components/UI/Input"
 import * as authActions from '../store/actions/auth'
@@ -82,10 +82,9 @@ const AuthScreen = () => {
     }, [dispatchFormState])
 
     return (
-
         <View style={styles.screen}>
             <View style={styles.cardItem}>
-                <View style={styles.inputsContainer}>
+                <ScrollView style={styles.inputsContainer} keyboardShouldPersistTaps='always'>
                     <Input
                         id='email'
                         label='E-Mail'
@@ -127,7 +126,7 @@ const AuthScreen = () => {
                                 setIsSignUp(prevState => !prevState)
                             }}/>
                     </View>
-                </View>
+                </ScrollView>
             </View>
         </View>
     )
