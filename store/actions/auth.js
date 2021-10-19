@@ -36,7 +36,6 @@ export const signup = (email, password) => {
         if (!response.ok) {
             const errorResData = await response.json()
 
-            console.log('error', errorResData)
             const errorId = errorResData.error.message
             let message = 'Coś poszło nie tak!'
             if (errorId === 'EMAIL_EXISTS') {
@@ -50,7 +49,6 @@ export const signup = (email, password) => {
 
         const resData = await response.json()
 
-        console.log(resData)
         dispatch(authenticate(resData.idToken, resData.localId, parseInt(resData.expiresIn) * 1000))
         const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000)
         saveDataToStorage(resData.idToken, resData.localId, expirationDate)
@@ -75,7 +73,6 @@ export const login = (email, password) => {
         if (!response.ok) {
             const errorResData = await response.json()
             const errorId = errorResData.error.message
-            console.log('error', errorResData)
 
             let message = 'Coś poszło nie tak!'
             if (errorId === 'EMAIL_NOT_FOUND') {
@@ -89,10 +86,7 @@ export const login = (email, password) => {
         }
 
         const resData = await response.json()
-        console.log(resData)
-        console.log(resData)
         dispatch(authenticate(resData.idToken, resData.localId, parseInt(resData.expiresIn) * 1000))
-        //zawojam date w date żeby przekształcić liczbę milisekund z powrotem w datę
         const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000)
         saveDataToStorage(resData.idToken, resData.localId, expirationDate)
     }

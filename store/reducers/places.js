@@ -1,5 +1,4 @@
-import { places } from "../../data/placesData"
-import {DELETE_PLACE, FETCH_PLACES, SET_PLACE_AS_VISITED} from "../actions/places"
+import { DELETE_PLACE, FETCH_PLACES, SET_PLACE_AS_VISITED } from "../actions/places"
 import VisitedPlace from "../../models/visitedPlace";
 
 const initialState = {
@@ -23,7 +22,7 @@ const placesReducer = (state = initialState, action) => {
         }
         case DELETE_PLACE:
             return {
-                visitedPlaces: state.visitedPlaces.filter(place => place.id !== action.plId),
+                visitedPlaces: state.visitedPlaces.filter(place => place.objId !== action.objId),
             }
 
     }

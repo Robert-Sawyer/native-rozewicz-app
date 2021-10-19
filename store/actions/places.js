@@ -36,20 +36,17 @@ export const setPlaceAsVisited = (visitedPlace) => {
 export const fetchPlaces = () => {
     return async (dispatch, getState) => {
         const userId = getState().auth.userId
-        console.log('userid', userId)
         try {
             const response = await fetch(`https://rozewicz-fik-app-default-rtdb.europe-west1.firebasedatabase.app/visitedPlaces/${userId}.json`)
 
             if (!response.ok) {
-                console.log('errorid', response)
-                // throw new Error('Coś poszło nie takkk!')
+                throw new Error('Coś poszło nie tak! Spróbuj jeszcze raz.')
             }
 
             const resData = await response.json()
             const loadedPlaces = []
 
             for (const key in resData) {
-                console.log('key', key)
                 loadedPlaces.push(
                     new VisitedPlace(
                         key,
@@ -57,7 +54,6 @@ export const fetchPlaces = () => {
                         resData[key].visitedPlace.placeName
                 ))
             }
-            console.log('loadedplaces',loadedPlaces)
             dispatch({type: FETCH_PLACES, visitedPlaces: loadedPlaces})
         } catch (e) {
             throw e
@@ -69,7 +65,6 @@ export const deletePlace = placeId => {
     return async (dispatch, getState) => {
         const userId = getState().auth.userId
         const token = getState().auth.token
-        console.log('token', userId)
         const response = await fetch(
             `https://rozewicz-fik-app-default-rtdb.europe-west1.firebasedatabase.app/visitedPlaces/${userId}/${placeId}.json?auth=${token}`, {
                 method: 'delete',
@@ -77,6 +72,6 @@ export const deletePlace = placeId => {
         if (!response.ok) {
             throw new Error('Coś poszło nie tak!')
         }
-        dispatch({type: DELETE_PLACE, plId: placeId})
+        dispatch({type: DELETE_PLACE, objId: placeId})
     }
 }
