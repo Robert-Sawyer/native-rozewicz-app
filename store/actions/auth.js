@@ -1,7 +1,7 @@
-import {AsyncStorage} from 'react-native'
-import {WEB_API_KEY} from "../../constants/keys"
+import { AsyncStorage } from 'react-native'
+import { WEB_API_KEY } from "../../constants/keys"
 
-export const AUTHENTICATE = 'AUTHENTICATE';
+export const AUTHENTICATE = 'AUTHENTICATE'
 export const LOGOUT = 'LOGOUT'
 export const SET_DID_TRY_AUTOLOGIN = 'SET_DID_TRY_AUTOLOGIN'
 
@@ -14,7 +14,7 @@ let timer
 export const authenticate = (token, userId, expTime) => {
     return dispatch => {
         dispatch(setLogoutTimer(expTime))
-        dispatch({type: AUTHENTICATE, token: token, userId: userId})
+        dispatch({ type: AUTHENTICATE, token: token, userId: userId })
     }
 }
 
@@ -40,8 +40,12 @@ export const signup = (email, password) => {
             let message = 'Coś poszło nie tak!'
             if (errorId === 'EMAIL_EXISTS') {
                 message = 'Istnieje już użytkownik o takim adresie e-mail'
+            } else if (errorId === 'INVALID_EMAIL') {
+                message = 'Nieprawidłowy e-mail'
+            } else if (errorId === 'INVALID_PASSWORD') {
+                message = 'Nieprawidłowe hasło'
             } else if (errorId === "MISSING_PASSWORD") {
-                message = 'missing password'
+                message = 'Brak hasła'
             }
 
             throw new Error(message)
@@ -77,15 +81,20 @@ export const login = (email, password) => {
             let message = 'Coś poszło nie tak!'
             if (errorId === 'EMAIL_NOT_FOUND') {
                 message = 'Nie znaleziono takiego adresu e-mail'
+            } else if (errorId === 'INVALID_EMAIL') {
+                message = 'Nieprawidłowy e-mail'
             } else if (errorId === 'INVALID_PASSWORD') {
                 message = 'Nieprawidłowe hasło'
             } else if (errorId === 'USER_DISABLED') {
                 message = 'Zostałeś zbanowany :('
+            } else if (errorId === "MISSING_PASSWORD") {
+                message = 'Brak hasła'
             }
             throw new Error(message)
         }
 
         const resData = await response.json()
+
         dispatch(authenticate(resData.idToken, resData.localId, parseInt(resData.expiresIn) * 1000))
         const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000)
         saveDataToStorage(resData.idToken, resData.localId, expirationDate)
