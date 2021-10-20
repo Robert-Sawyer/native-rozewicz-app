@@ -1,5 +1,5 @@
 import { DELETE_PLACE, FETCH_PLACES, SET_PLACE_AS_VISITED } from "../actions/places"
-import VisitedPlace from "../../models/visitedPlace";
+import VisitedPlace from "../../models/visitedPlace"
 
 const initialState = {
     visitedPlaces: [],

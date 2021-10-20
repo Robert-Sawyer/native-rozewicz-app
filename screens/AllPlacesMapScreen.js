@@ -44,9 +44,7 @@ const AllPlacesMapScreen = (props) => {
                         <Text style={styles.tooltipTitle}>{title}</Text>
                         <Text style={styles.tooltipDesc}>{description}</Text>
                         <View style={styles.buttonContainer}>
-                            <CustomButton onSelect={() => {
-                                console.log('Miejsce odwiedzone')
-                            }}>Zobacz szczegóły</CustomButton>
+                            <CustomButton>Zobacz szczegóły</CustomButton>
                         </View>
                     </View>
                 </Callout>
