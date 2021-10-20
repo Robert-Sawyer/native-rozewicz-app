@@ -1,8 +1,8 @@
-import React from "react";
-import {useSelector} from "react-redux";
-import {NavigationContainer} from "@react-navigation/native";
-import {MainNavigator, AuthNavigator} from "./PlacesNavigator";
-import StartUpScreen from "../screens/StartUpScreen";
+import React from "react"
+import {useSelector} from "react-redux"
+import {NavigationContainer} from "@react-navigation/native"
+import {MainNavigator, AuthNavigator} from "./PlacesNavigator"
+import StartUpScreen from "../screens/StartUpScreen"
 
 const AppNavigator = () => {
 
@@ -11,11 +11,9 @@ const AppNavigator = () => {
 
     return (
         <NavigationContainer>
-            {/*<MainNavigator/>*/}
-            {/*<AuthNavigator/>*/}
             {isAuth && <MainNavigator/>}
-            {!isAuth && <AuthNavigator/>}
-            {/*{!isAuth && !didTryAutologin && <StartUpScreen/>}*/}
+            {!isAuth && didTryAutologin && <AuthNavigator/>}
+            {!isAuth && !didTryAutologin && <StartUpScreen/>}
         </NavigationContainer>
     )
 }

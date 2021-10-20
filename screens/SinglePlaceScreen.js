@@ -26,8 +26,6 @@ const SinglePlaceScreen = props => {
     }
 
     const setPlaceAsVisited = () => {
-        console.log("Miejsce", selectedPlace)
-
         const visitedPlace = {
             id: placeId,
             placeName: placeName

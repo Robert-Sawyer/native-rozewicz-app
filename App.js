@@ -1,14 +1,12 @@
-import React, {useState} from 'react'
-import {createStore, combineReducers, applyMiddleware} from "redux"
+import React, { useState} from 'react'
+import { createStore, combineReducers, applyMiddleware } from "redux"
 import {Provider} from "react-redux"
 import Thunk from 'redux-thunk'
 import * as Font from 'expo-font'
 import AppLoading from "expo-app-loading"
 import authReducer from "./store/reducers/auth"
 import AppNavigator from "./navigation/AppNavigator"
-import {MainNavigator} from "./navigation/PlacesNavigator";
-import {NavigationContainer} from "@react-navigation/native";
-import placesReducer from "./store/reducers/places";
+import placesReducer from "./store/reducers/places"
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -44,10 +42,7 @@ export default function App() {
     }
     return (
         <Provider store={store}>
-            {/*<NavigationContainer>*/}
-            {/*    <MainNavigator/>*/}
-            {/*</NavigationContainer>*/}
             <AppNavigator/>
         </Provider>
-    );
+    )
 }

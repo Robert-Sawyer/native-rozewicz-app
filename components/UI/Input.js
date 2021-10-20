@@ -26,33 +26,35 @@ const Input = props => {
 
     const [inputState, dispatch] = useReducer(inputReducer, {
         value: props.initialValue ? props.initialValue : '',
-        isValid: props.initiallyValid,
         touched: false
     })
+    let errorTextMessage = ''
 
     const {onInputChange, id} = props
 
     useEffect(() => {
+        let mounted = true
+        if (mounted) {
             onInputChange(id, inputState.value, inputState.isValid)
+        }
+        return () => mounted = false
     }, [inputState, onInputChange, id])
 
     const handleTextChange = text => {
+        const {required, email, minLength} = props
         const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         let isValid = true
-        if (props.required && text.trim().length === 0) {
+        if (required && text.trim().length === 0) {
             isValid = false
+            errorTextMessage = 'Wprowadź jakąś wartość'
         }
-        if (props.email && !emailRegex.test(text.toLowerCase())) {
+        if (email && !emailRegex.test(text.toLowerCase())) {
             isValid = false
+            errorTextMessage = 'Niepoprawny email'
         }
-        if (props.min != null && +text < props.min) {
+        if (minLength != null && text.length < props.minLength) {
             isValid = false
-        }
-        if (props.max != null && +text > props.max) {
-            isValid = false
-        }
-        if (props.minLength != null && text.length < props.minLength) {
-            isValid = false
+            errorTextMessage = 'Wprowadzone hasło jest za krótkie'
         }
 
         dispatch({type: INPUT_CHANGE, value: text, isValid: isValid})
@@ -65,16 +67,19 @@ const Input = props => {
     return (
         <View style={styles.formControl}>
             <Text style={styles.label}>{props.label}</Text>
-            <TextInput
-                {...props}
-                style={styles.input}
-                value={inputState.value}
-                onChangeText={handleTextChange}
-                onBlur={handleLostFocus}
-            />
+            <View style={{flexDirection: 'row'}}>
+                <TextInput
+                    {...props}
+                    style={styles.input}
+                    value={inputState.value}
+                    onChangeText={handleTextChange}
+                    onBlur={handleLostFocus}
+                />
+                <View style={styles.hideShowLabel}>{props.icon ? props.icon : null}</View>
+            </View>
             {!inputState.isValid && inputState.touched &&
             <View style={styles.errorContainer}>
-                <Text style={styles.errorText}>{props.errorText}</Text>
+                <Text style={styles.errorText}>{errorTextMessage}</Text>
             </View>}
         </View>
     )
@@ -93,6 +98,13 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
+        width: '100%',
+    },
+    hideShowLabel: {
+        width: '20%',
+        right: '100%',
+        height: '60%',
+        marginTop: 16,
     },
     errorContainer: {
         marginVertical: 5,
