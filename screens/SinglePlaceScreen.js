@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import { View, ScrollView, Image, Text, StyleSheet } from "react-native"
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { places } from "../data/placesData"
 import Colors from '../constants/colors'
 import CustomButton from "../components/UI/CustomButton"
@@ -13,10 +13,24 @@ const SinglePlaceScreen = props => {
     const placeName = props.route.params.placeName
     const selectedPlace = places.find(place => place.id === placeId)
     const dispatch = useDispatch()
-    const isVisited = visitedPlaces.map(place => place.plId).includes(placeId)
-    const objectId = isVisited ? visitedPlaces.find(element => element.plId === placeId).objId : null
+    const [isVisited, setIsVisited] = useState(visitedPlaces && visitedPlaces.map(place => place.plId).includes(placeId))
+    // const objectId = isVisited ? visitedPlaces.find(element => element.plId === placeId).objId : null
 
     const selectedPlaceLocation = {lat: selectedPlace.latitude, lon: selectedPlace.longitude}
+
+    const loadPlaces = useCallback(async () => {
+        await dispatch(actions.fetchPlaces())
+    }, [dispatch])
+
+    useEffect(() => {
+        //rozwiązanie z let mounted dodałem, żeby usunąc warning z
+        // Can't perform a React state update on an unmounted component, ale chyba bez skutku, bo ciągle
+        //sie pojawia
+        let mounted = true
+        if (mounted) loadPlaces()
+        return () => mounted = false
+
+    }, [loadPlaces])
 
     const handleShowMap = () => {
         props.navigation.navigate('Map', {
@@ -25,17 +39,19 @@ const SinglePlaceScreen = props => {
         })
     }
 
-    const setPlaceAsVisited = () => {
+    const setPlaceAsVisited = useCallback(async () => {
         const visitedPlace = {
             id: placeId,
             placeName: placeName
         }
         dispatch(actions.setPlaceAsVisited(visitedPlace))
-    }
+        setIsVisited(true)
+    }, [dispatch])
 
-    const setPlaceAsUnvisited = (objId) => {
-        dispatch(actions.deletePlace(objId))
-    }
+    // const setPlaceAsUnvisited = useCallback((objId) => {
+    //     dispatch(actions.deletePlace(objId))
+    //     setIsVisited(false)
+    // }, [dispatch])
 
     const currentPlaceView = selectedPlace.currentView
 
@@ -69,7 +85,7 @@ const SinglePlaceScreen = props => {
                     </View>
                 ) : (
                     <View style={styles.buttonContainer}>
-                        <CustomButton onSelect={setPlaceAsUnvisited.bind(this, objectId)}>Oznacz miejsce jako nieodwiedzone</CustomButton>
+                        {/*<CustomButton onSelect={setPlaceAsUnvisited.bind(this, objectId)}>Oznacz miejsce jako nieodwiedzone</CustomButton>*/}
                     </View>
                 )
                 }

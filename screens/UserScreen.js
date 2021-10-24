@@ -21,9 +21,15 @@ const UserScreen = (props) => {
     }, [dispatch])
 
     useEffect(() => {
-        loadPlaces()
+        //rozwiązanie z let mounted dodałem, żeby usunąc warning z
+        // Can't perform a React state update on an unmounted component, ale chyba bez skutku, bo ciągle
+        //sie pojawia
+        let mounted = true
+        if (mounted) loadPlaces()
         setOpenVisited(false)
         setOpenUnvisited(false)
+
+        return () => mounted = false
     }, [loadPlaces])
 
     const openCloseVisitedList = () => {

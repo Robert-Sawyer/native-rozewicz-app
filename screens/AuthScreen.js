@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer, useCallback } from 'react'
 import { useDispatch } from "react-redux"
-import { View, Button, StyleSheet, ActivityIndicator, Alert, ScrollView } from 'react-native'
+import { View, Text, Button, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import Colors from '../constants/colors'
 import Input from "../components/UI/Input"
 import * as authActions from '../store/actions/auth'
@@ -34,6 +34,7 @@ const AuthScreen = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState()
+    const [isSecureEntry, setIsSecureEntry] = useState(true)
     const [isSignUp, setIsSignUp] = useState(true)
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
@@ -66,11 +67,11 @@ const AuthScreen = () => {
         setIsLoading(false)
     }
 
-    // useEffect(() => {
-    //     if (error) {
-    //         Alert.alert('Błąd', error, [{text: 'OK'}])
-    //     }
-    // }, [error])
+    useEffect(() => {
+        if (error) {
+            Alert.alert('Błąd', error, [{text: 'OK'}])
+        }
+    }, [error])
 
     const handleInputChange = useCallback((inputId, inputValue, inputValidity) => {
         dispatchFormState({
@@ -100,7 +101,14 @@ const AuthScreen = () => {
                         id='password'
                         label='Hasło'
                         keyboardType='default'
-                        secureTextEntry
+                        secureTextEntry={isSecureEntry}
+                        icon={
+                            <TouchableOpacity onPress={() => {
+                                setIsSecureEntry(prevState => !prevState)
+                            }}>
+                                <Text style={{ fontSize: 14 }}>{isSecureEntry ? 'Pokaż' : 'Ukryj'}</Text>
+                            </TouchableOpacity>
+                        }
                         required
                         minLength={5}
                         autoCapitalize='none'
@@ -132,7 +140,7 @@ const AuthScreen = () => {
     )
 }
 
-export const authOptions = navData => {
+export const authOptions = () => {
     return {
         headerTitle: 'Logowanie / Rejestracja'
     }
