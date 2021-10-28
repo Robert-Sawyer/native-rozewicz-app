@@ -1,5 +1,11 @@
 import React from 'react'
-import { ScrollView, Platform, StyleSheet, Text, View } from 'react-native'
+import {
+    ScrollView,
+    Platform,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
 import { HeaderButtons, Item } from "react-navigation-header-buttons"
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps"
 import { places } from "../data/placesData"
@@ -17,7 +23,7 @@ const AllPlacesMapScreen = (props) => {
         longitudeDelta: 0.016,
     }
 
-    const renderAllMarkers = (place) =>{
+    const renderAllMarkers = (place) => {
         const coordinates = {
             latitude: place.latitude,
             longitude: place.longitude
@@ -54,12 +60,10 @@ const AllPlacesMapScreen = (props) => {
 
     return (
         <View style={styles.mainContainer}>
-            <ScrollView>
-                <View style={styles.buttonContainer}>
-                    <CustomButton onSelect={() => {
-                        props.navigation.navigate('PlacesList')
-                    }}>Przejdź do listy</CustomButton>
-                </View>
+            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+                <CustomButton onSelect={() => {
+                    props.navigation.navigate('PlacesList')
+                }}>Przejdź do listy</CustomButton>
             </ScrollView>
             <View style={styles.instructionContainer}>
                 <Text style={styles.instruction}>Kliknij na wyróżnione miejsce na mapie aby poznać szczegóły.</Text>
@@ -93,11 +97,8 @@ const styles = StyleSheet.create({
     mainContainer: {
         alignItems: 'center'
     },
-    buttonContainer: {
+    scrollViewContainer: {
         width: '100%',
-        marginVertical: 0,
-        paddingTop: 10,
-        justifyContent: 'center',
         alignItems: 'center',
     },
     instructionContainer: {

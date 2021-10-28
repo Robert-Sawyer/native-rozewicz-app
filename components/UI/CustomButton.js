@@ -1,13 +1,17 @@
 import React from 'react'
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native'
-import Colors from "../../constants/colors"
+import {
+    View,
+    TouchableOpacity,
+    Text,
+    StyleSheet
+} from 'react-native'
 
-const CustomButton = (props) => {
+const CustomButton = ({ onSelect, children }) => {
 
     return (
         <View style={styles.mainContainer}>
-            <TouchableOpacity style={styles.customButton} onPress={props.onSelect}>
-                <Text style={styles.buttonText}>{props.children}</Text>
+            <TouchableOpacity style={styles.customButton} onPress={onSelect}>
+                <Text style={styles.buttonText}>{children}</Text>
             </TouchableOpacity>
         </View>
     )
@@ -15,24 +19,25 @@ const CustomButton = (props) => {
 
 const styles = StyleSheet.create({
     mainContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        width: '75%',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     customButton: {
         width: '100%',
-        backgroundColor: Colors.mainColor,
-        marginVertical: 10,
-        paddingVertical: 7,
-        paddingHorizontal: 10,
-        justifyContent: 'center',
+        paddingVertical: 5,
+        paddingHorizontal: 32,
+        marginVertical: 12,
+        backgroundColor: '#6c6c6c',
         alignItems: 'center',
+        justifyContent: 'center',
         borderRadius: 10,
     },
     buttonText: {
-        fontSize: 21,
         color: '#fff',
-        fontFamily: 'roundulliard'
+        textAlign: 'center',
+        fontSize: 19,
+        fontFamily: 'roundulliard',
     },
 })
 

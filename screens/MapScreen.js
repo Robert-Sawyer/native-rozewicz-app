@@ -1,5 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, ScrollView } from "react-native"
+import {
+    View,
+    Text,
+    StyleSheet,
+    ScrollView
+} from "react-native"
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps"
 import Colors from "../constants/colors"
 import CommonStyles from '../constants/commonStyles'
@@ -35,17 +40,17 @@ const MapScreen = (props) => {
 
     return (
         <View style={styles.mainContainer}>
-            <ScrollView>
-            <View style={styles.buttonContainer}>
-                <CustomButton onSelect={() => {
-                    props.navigation.navigate('PlacesList')
-                }}>Przejdź do listy</CustomButton>
-            </View>
-            <View style={styles.buttonContainer}>
-                <CustomButton onSelect={() => {
-                    props.navigation.navigate('AllPlacesMap')
-                }}>Zobacz wszystkie na mapie</CustomButton>
-            </View>
+            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+                <View style={styles.buttonContainer}>
+                    <CustomButton onSelect={() => {
+                        props.navigation.navigate('PlacesList')
+                    }}>Przejdź do listy</CustomButton>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <CustomButton onSelect={() => {
+                        props.navigation.navigate('AllPlacesMap')
+                    }}>Zobacz wszystkie na mapie</CustomButton>
+                </View>
             </ScrollView>
             <View style={styles.mapViewContainer}>
                 <MapView style={styles.map} region={mapRegion}
@@ -93,16 +98,19 @@ const styles = StyleSheet.create({
     mainContainer: {
         alignItems: 'center'
     },
+    scrollViewContainer: {
+        alignItems: 'center',
+    },
     buttonContainer: {
         width: '100%',
-        marginVertical: 1,
+        height: 70,
         justifyContent: 'center',
         alignItems: 'center',
     },
     mapViewContainer: {
         width: '95%',
         height: 530,
-        marginTop: 10,
+        marginTop: 15,
         borderColor: Colors.mainColor,
         borderWidth: 6,
         borderRadius: 9,

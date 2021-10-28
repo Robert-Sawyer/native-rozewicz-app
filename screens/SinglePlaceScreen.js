@@ -1,5 +1,14 @@
-import React, {useCallback, useEffect, useState} from 'react'
-import { View, ScrollView, Image, Text, StyleSheet } from "react-native"
+import React, {
+    useCallback,
+    useState
+} from 'react'
+import {
+    View,
+    ScrollView,
+    Image,
+    Text,
+    StyleSheet
+} from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import { places } from "../data/placesData"
 import Colors from '../constants/colors'
@@ -11,26 +20,13 @@ const SinglePlaceScreen = props => {
     const placeId = props.route.params.placeId
     const visitedPlaces = useSelector(state => state.places.visitedPlaces)
     const placeName = props.route.params.placeName
-    const selectedPlace = places.find(place => place.id === placeId)
+    const selectedPlace = places.find(place => (place ? place.id : null) === placeId)
     const dispatch = useDispatch()
     const [isVisited, setIsVisited] = useState(visitedPlaces && visitedPlaces.map(place => place.plId).includes(placeId))
-    // const objectId = isVisited ? visitedPlaces.find(element => element.plId === placeId).objId : null
+    const objectId = isVisited && visitedPlaces.find(element => element.plId === placeId) ?
+        visitedPlaces.find(element => element.plId === placeId).objId : null
 
     const selectedPlaceLocation = {lat: selectedPlace.latitude, lon: selectedPlace.longitude}
-
-    const loadPlaces = useCallback(async () => {
-        await dispatch(actions.fetchPlaces())
-    }, [dispatch])
-
-    useEffect(() => {
-        //rozwiązanie z let mounted dodałem, żeby usunąc warning z
-        // Can't perform a React state update on an unmounted component, ale chyba bez skutku, bo ciągle
-        //sie pojawia
-        let mounted = true
-        if (mounted) loadPlaces()
-        return () => mounted = false
-
-    }, [loadPlaces])
 
     const handleShowMap = () => {
         props.navigation.navigate('Map', {
@@ -48,10 +44,10 @@ const SinglePlaceScreen = props => {
         setIsVisited(true)
     }, [dispatch])
 
-    // const setPlaceAsUnvisited = useCallback((objId) => {
-    //     dispatch(actions.deletePlace(objId))
-    //     setIsVisited(false)
-    // }, [dispatch])
+    const setPlaceAsUnvisited = useCallback((objId) => {
+        dispatch(actions.deletePlace(objId))
+        setIsVisited(false)
+    }, [dispatch])
 
     const currentPlaceView = selectedPlace.currentView
 
@@ -85,7 +81,7 @@ const SinglePlaceScreen = props => {
                     </View>
                 ) : (
                     <View style={styles.buttonContainer}>
-                        {/*<CustomButton onSelect={setPlaceAsUnvisited.bind(this, objectId)}>Oznacz miejsce jako nieodwiedzone</CustomButton>*/}
+                        <CustomButton onSelect={setPlaceAsUnvisited.bind(this, objectId)}>Oznacz miejsce jako nieodwiedzone</CustomButton>
                     </View>
                 )
                 }
@@ -150,7 +146,7 @@ const styles = StyleSheet.create({
         borderColor: Colors.mainColor,
     },
     buttonContainer: {
-        width: '100%',
+        width: '80%',
         marginVertical: 5,
         height: 70,
         justifyContent: 'center',
