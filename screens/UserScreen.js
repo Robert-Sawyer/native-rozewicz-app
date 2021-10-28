@@ -1,8 +1,19 @@
-import React, {useCallback, useEffect, useState} from 'react'
-import {View, Text, Button, FlatList, Platform, StyleSheet, SafeAreaView, ScrollView} from 'react-native'
-import {useDispatch, useSelector} from "react-redux"
-import {HeaderButtons, Item} from "react-navigation-header-buttons"
-import {places} from "../data/placesData"
+import React, {
+    useCallback,
+    useEffect,
+    useState
+} from 'react'
+import {
+    FlatList,
+    Platform,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigation } from '@react-navigation/native';
+import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { places } from "../data/placesData"
 import Colors from '../constants/colors'
 import CustomHeaderButton from "../components/HeaderButton"
 import UserScreenButton from "../components/UI/UserScreenButton"
@@ -15,22 +26,22 @@ const UserScreen = (props) => {
     const [openUnvisited, setOpenUnvisited] = useState(false)
     const visitedPlaces = useSelector(state => state.places.visitedPlaces)
     const dispatch = useDispatch()
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        return navigation.addListener('focus', () => {
+            loadPlaces()
+        })
+    }, [navigation])
 
     const loadPlaces = useCallback(async () => {
         await dispatch(actions.fetchPlaces())
     }, [dispatch])
 
     useEffect(() => {
-        //rozwiązanie z let mounted dodałem, żeby usunąc warning z
-        // Can't perform a React state update on an unmounted component, ale chyba bez skutku, bo ciągle
-        //sie pojawia
-        let mounted = true
-        if (mounted) loadPlaces()
         setOpenVisited(false)
         setOpenUnvisited(false)
-
-        return () => mounted = false
-    }, [loadPlaces])
+    }, [])
 
     const openCloseVisitedList = () => {
         if (!openVisited) {
@@ -50,9 +61,15 @@ const UserScreen = (props) => {
         }
     }
 
-    const filteredVisitedPlaces = places.filter(element => visitedPlaces.map(pl => pl.plId).includes(element.id))
+    const filteredVisitedPlaces = places
+        .filter(element => visitedPlaces
+            .map(pl => pl.plId)
+            .includes(element.id))
 
-    const filteredUnvisitedPlaces = places.filter(element => !visitedPlaces.map(pl => pl.plId).includes(element.id))
+    const filteredUnvisitedPlaces = places
+        .filter(element => !visitedPlaces
+            .map(pl => pl.plId)
+            .includes(element.id))
 
     return (
         <View style={styles.mainContainer}>

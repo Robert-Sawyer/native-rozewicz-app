@@ -1,6 +1,10 @@
-import React, {useEffect} from 'react'
-import {useDispatch} from "react-redux"
-import {View, ActivityIndicator, AsyncStorage} from 'react-native'
+import React, { useEffect } from 'react'
+import { useDispatch } from "react-redux"
+import {
+    View,
+    ActivityIndicator,
+    AsyncStorage
+} from 'react-native'
 import Colors from '../constants/colors'
 import * as authActions from '../store/actions/auth'
 
@@ -18,17 +22,15 @@ const StartUpScreen = props => {
             }
             const transformedData = JSON.parse(userData)
             const {token, userId, expDate} = transformedData
-            //TODO przed wydaniem usunąć to, co jest po Date(expDate) ORAZ getTime w warunku poniżej
-            const expirationDate = new Date(expDate).getTime() - 7200000
+            const expirationDate = new Date(expDate).getTime()
 
             if (expirationDate <= new Date().getTime() || !token || !userId) {
                 dispatch(authActions.setDidTryAutologin())
                 return;
             }
 
-            const expTime = expirationDate.getTime() - new Date().getTime()
+            const expTime = expirationDate - new Date().getTime()
 
-            props.navigation.navigate('PlacesList')
             dispatch(authActions.authenticate(token, userId, expTime))
         }
 
