@@ -6,7 +6,7 @@ export const LOGOUT = 'LOGOUT'
 export const SET_DID_TRY_AUTOLOGIN = 'SET_DID_TRY_AUTOLOGIN'
 
 export const setDidTryAutologin = () => {
-    return {type: SET_DID_TRY_AUTOLOGIN}
+    return { type: SET_DID_TRY_AUTOLOGIN }
 }
 
 let timer
@@ -52,7 +52,6 @@ export const signup = (email, password) => {
         }
 
         const resData = await response.json()
-
         dispatch(authenticate(resData.idToken, resData.localId, parseInt(resData.expiresIn) * 1000))
         const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000)
         saveDataToStorage(resData.idToken, resData.localId, expirationDate)
@@ -94,7 +93,6 @@ export const login = (email, password) => {
         }
 
         const resData = await response.json()
-
         dispatch(authenticate(resData.idToken, resData.localId, parseInt(resData.expiresIn) * 1000))
         const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000)
         saveDataToStorage(resData.idToken, resData.localId, expirationDate)

@@ -1,5 +1,5 @@
 class Place {
-    constructor(id, title, image, description, latitude, longitude, currentView, link) {
+    constructor(id, title, image, description, latitude, longitude, currentView) {
         this.id = id
         this.title = title
         this.image = image
@@ -7,7 +7,6 @@ class Place {
         this.latitude = latitude
         this.longitude = longitude
         this.currentView = currentView
-        this.link = link
     }
 }
 

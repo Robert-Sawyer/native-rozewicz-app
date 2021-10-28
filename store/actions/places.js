@@ -19,13 +19,12 @@ export const setPlaceAsVisited = (visitedPlace) => {
             throw new Error('Coś poszło nie tak! Spróbuj jeszcze raz.')
         }
         const resData = await response.json()
-
         dispatch({
             type: SET_PLACE_AS_VISITED,
             visitedPlaceData: {
                 objId: resData.name,
-                placeId: resData.name.visitedPlace.id,
-                title: resData.name.visitedPlace.placeName
+                plId: visitedPlace.id,
+                title: visitedPlace.placeName
             }
         })
     }
@@ -50,7 +49,7 @@ export const fetchPlaces = () => {
                         key,
                         resData[key].visitedPlace.id,
                         resData[key].visitedPlace.placeName
-                ))
+                    ))
             }
             dispatch({ type: FETCH_PLACES, visitedPlaces: loadedPlaces })
         } catch (e) {
