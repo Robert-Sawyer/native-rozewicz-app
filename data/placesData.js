@@ -14,9 +14,9 @@ export const places = [
         'p2',
         'Kościołek pw. Marii Magdaleny i dom przy ul. Długiej',
         'https://static.wixstatic.com/media/235da6_1093e21d7d164d509a1a192e23350f36~mv2.jpg/v1/fill/w_708,h_471,al_c,q_90/235da6_1093e21d7d164d509a1a192e23350f36~mv2.webp',
-        'Domem dzieciństwa braci Różewiczów był nieistniejący już maleńki domek przy ul. Długiej (w okolicy dzisiejszego parkingu przy CH Baszta). Po drugiej stronie ulicy były gospodarstwa rolne, a na miejscu bloków dzisiejszego osiedla Tysiąclecia rozciągały się pola uprawne. Nieopodal znajdował się powstały w XVI w. drewniany kościółek pod wezwaniem Marii Magdaleny. To o nim pisał w swoim debiucie literackim Tadeusz Różewicz:\n' +
+        'Domem dzieciństwa braci Różewiczów był nieistniejący już maleńki domek przy ul. Długiej (w okolicy dzisiejszego parkingu przy CH Baszta). Po drugiej stronie ulicy były gospodarstwa rolne, a na miejscu bloków dzisiejszego osiedla Tysiąclecia rozciągały się pola uprawne. Nieopodal znajdował się powstały w XVII w. drewniany kościółek pod wezwaniem Marii Magdaleny. To o nim pisał w swoim debiucie literackim Tadeusz Różewicz:\n' +
         '\n' +
-        '"do szkoły idąc rano\n' +
+        '"Do szkoły idąc rano\n' +
         '\n' +
         'widzę twe białe ściany\n' +
         '\n' +
@@ -30,9 +30,15 @@ export const places = [
     ),
     new Place(
         'p3',
-        'Gimnazjum Stanisława Niemca i Mural przy ul. Bugaj 4',
+        'Gimnazjum Stanisława Niemca i mural przy ul. Bugaj 4',
         'https://static.wixstatic.com/media/235da6_72308b98af004f55bfe16d2d4c92cc50~mv2.jpg/v1/fill/w_614,h_385,al_c,lg_1,q_90/235da6_72308b98af004f55bfe16d2d4c92cc50~mv2.webp',
-        'Na budynku założonego w 1915 r. przez legionistę Stanisława Niemca Gimnazjum Męskiego znajduje się mural autorstwa Anny Tarnowskiej namalowany przez Marka Barskiego. Inspiracją do niego było motto festiwalu różewiczowskiego z 2017 r. - Najlepiej widzę, gdy zamknę oczy. Z zamkniętymi oczami widzę miłość, wiarę, prawdę. Uczniem tej szkoły był Janusz Różewicz.',
+        'Na budynku założonego w 1915 r. przez legionistę Stanisława Niemca Gimnazjum Męskiego znajduje się mural autorstwa Anny Tarnowskiej namalowany przez Marka Barskiego. Inspiracją do niego było motto festiwalu różewiczowskiego z 2017 r.\n' +
+        '\n' +
+        '"Najlepiej widzę, gdy zamknę oczy.\n' +
+        '\n' +
+        'Z zamkniętymi oczami widzę\n' +
+        '\n' +
+        'miłość, wiarę, prawdę."',
         51.071211,
         19.449059,
         'https://static.wixstatic.com/media/235da6_d1a62f8f0e904c10959bee1b732a93a7~mv2.jpg/v1/fill/w_708,h_398,al_c,q_90/235da6_d1a62f8f0e904c10959bee1b732a93a7~mv2.webp',
@@ -41,7 +47,7 @@ export const places = [
         'p4',
         'Gimnazjum Społeczne im. Feliksa Fabianiego',
         'https://static.wixstatic.com/media/235da6_b2124f35251e4a44bca313f8a788b55b~mv2.jpg/v1/fill/w_708,h_441,al_c,q_90/235da6_b2124f35251e4a44bca313f8a788b55b~mv2.webp',
-        'Zostało założone przez w okresie międzywojennym przez absolwentów szkoły prowadzonej w XIX wieku przez Fabianiego przy ul. Długiej. Zajmowało początkowo barak na placu nieopodal radomszczańskiej cerkwi. Dopiero w 1937 r. uczniowie przenieśli się nowej, murowanej siedziby użytkowanej obecnie przez ZSE-E. Była to kolejna radomszczańska szkoła braci Różewiczów, a Tadeusz w trakcie wakacji w 1938 r. pracował przy jej rozbudowie.',
+        'Zostało założone w okresie międzywojennym przez absolwentów szkoły prowadzonej w XIX wieku przez Fabianiego przy ul. Długiej. Zajmowało początkowo barak na placu nieopodal radomszczańskiej cerkwi. Dopiero w 1937 r. uczniowie przenieśli się nowej, murowanej siedziby użytkowanej obecnie przez ZSE-E. Była to kolejna radomszczańska szkoła braci Różewiczów.',
         51.071526,
         19.447566,
     ),
@@ -57,7 +63,9 @@ export const places = [
         'p6',
         'Budynek Kinemy w Radomsku',
         'https://static.wixstatic.com/media/235da6_f5ff8244340946b68c00b8e3ddf05b78~mv2.jpg/v1/fill/w_708,h_967,al_c,q_90/235da6_f5ff8244340946b68c00b8e3ddf05b78~mv2.webp',
-        'W 1881 r. założono w Radomsku Ochotniczą Straż Ogniową dla której ze składek społecznych zbudowano salę strażacką przy dzisiejszej ulicy Narutowicza. Budynek systematycznie rozbudowywano, a w 1910 r. uzyskał ostateczny kształt z widownią i betonowym balkonem. Od 1909 roku działał w nim stały kinematograf, odbywały się w nim także spektakle teatralne, wiece polityczne, a także procesy sądowe. To tam zapadły wyroki w procesie żołnierzy Warszyca w 1946 roku. W okresie międzywojennym Kinema była „oknem na świat” dla młodych Różewiczów – Kino do tej pory jest dla mnie jak buda jarmarczna i jak tajemnicza świątynia; tam, w ciemności, doznaje się objawienia.',
+        'W 1881 r. założono w Radomsku Ochotniczą Straż Ogniową dla której ze składek społecznych zbudowano salę strażacką przy dzisiejszej ulicy Narutowicza. Budynek systematycznie rozbudowywano, a w 1911 r. uzyskał ostateczny kształt z widownią i betonowym balkonem. Od 1909 roku działał w nim stały kinematograf, odbywały się w nim także spektakle teatralne, wiece polityczne, a także procesy sądowe. To tam zapadły wyroki w procesie żołnierzy "Warszyca" w 1946 roku. W okresie międzywojennym Kinema była „oknem na świat” dla młodych Różewiczów –\n' +
+        '\n' +
+        '"Kino do tej pory jest dla mnie jak buda jarmarczna i jak tajemnicza świątynia tam, w ciemności, doznaje się objawienia."',
         51.070818,
         19.445938,
         'https://static.wixstatic.com/media/235da6_e72c568800574cb4bdad401d7b3e9084~mv2.jpg/v1/fill/w_708,h_398,al_c,q_90/235da6_e72c568800574cb4bdad401d7b3e9084~mv2.webp',
@@ -66,7 +74,7 @@ export const places = [
         'p7',
         'Park Świętojański',
         'https://static.wixstatic.com/media/235da6_a7f4e7fed1b2463a852517c7f79d0137~mv2.jpg/v1/fill/w_601,h_426,al_c,lg_1,q_90/235da6_a7f4e7fed1b2463a852517c7f79d0137~mv2.webp',
-        'Powstał w czasie I Wojny Światowej siłami radomszczańskich bezrobotnych i włoskich jeńców wojennych, którzy na wniosek burmistrza Kosteckiego rozpoczęli regulację Radomki. Podwyższono teren, wytyczono nowe koryto rzeki oraz staw, który przejmować miał nadmiar wody. Ponieważ miało to chronić miasto przed powodzią patronem nowego parku został św. Jan Nepomucen. Radomszczanie potocznie nazywali go sportami wodnymi i korzystali z niego od 1921 roku. Wśród dzieci biegających po jego alejkach byli bracia Różewiczowie, którzy tam grali w palanta, uczyli się wiosłować, ślizgali na „kopyciankach” . Mieszkali przecież nieopodal, przy ul. Długiej (dzisiejsza ul. Fabianiego).',
+        'Powstał w czasie I Wojny Światowej siłami radomszczańskich bezrobotnych i jeńców wojennych, którzy na wniosek burmistrza Stefana Kosteckiego rozpoczęli regulację Radomki. Podwyższono teren, wytyczono nowe koryto rzeki oraz staw, który przejmować miał nadmiar wody. Ponieważ miało to chronić miasto przed powodzią patronem nowego parku został św. Jan Nepomucen. Radomszczanie nazywali to miejsce Sport Wodny i korzystali z niego od 1921 roku. Wśród dzieci biegających po jego alejkach byli bracia Różewiczowie, którzy tam grali w palanta, uczyli się wiosłować, ślizgali na „kopyciankach”. Mieszkali przecież nieopodal, przy ul. Długiej (dzisiejsza ul. Fabianiego).',
         51.063781,
         19.440192,
         'https://static.wixstatic.com/media/235da6_400ec31c059b4adcaf95f5e901cf745e~mv2.jpg/v1/fill/w_708,h_531,al_c,q_90/235da6_400ec31c059b4adcaf95f5e901cf745e~mv2.webp',
@@ -84,7 +92,7 @@ export const places = [
         'p9',
         'Dworzec kolejowy',
         'https://static.wixstatic.com/media/235da6_fecdcf7da34b472cbf18e3b7e07f9a70~mv2.jpg/v1/fill/w_708,h_450,al_c,q_90/235da6_fecdcf7da34b472cbf18e3b7e07f9a70~mv2.webp',
-        'W 1846 r. przez Radomsko przeprowadzona została linia kolei warszawsko-wiedeńskiej. Wtedy też powstał pierwszy budynek dworca kolejowego z którego korzystali m.in. dwaj nasi nobliści. Henryk Sienkiewicz przesiadał się tu do bryczki, która wiozła go do Strzałkowa, gdzie mieszkał jego przyjaciel Henryk Siemiradzki, a Władysław Reymont urodził się przecież w niedalekich Kobielach Wielkich. Obiekt ten zniszczony został w trakcie I Wojny Światowej. Nowy budynek oddany został do użytku w 1936 r. i to właśnie z niego bracia Różewiczowie wyruszyli, aby poznawać świat.',
+        'W 1846 r. przez Radomsko przeprowadzona została linia kolei warszawsko-wiedeńskiej. Wtedy też powstał pierwszy budynek dworca kolejowego z którego korzystali m.in. dwaj nasi nobliści. Henryk Sienkiewicz przesiadał się tu do bryczki, która wiozła go do Strzałkowa, gdzie mieszkał jego przyjaciel Henryk Siemiradzki, a Władysław Reymont urodził się przecież w niedalekich Kobielach Wielkich. Obiekt ten zniszczony został w trakcie I Wojny Światowej. Nowy budynek oddany został do użytku w 1935 r. i to właśnie z niego bracia Różewiczowie wyruszyli, aby poznawać świat.',
         51.074539,
         19.437813,
         'https://static.wixstatic.com/media/235da6_1c3a68838dda4f90a3493f5bf3e05976~mv2.jpg/v1/fill/w_708,h_465,al_c,q_90/235da6_1c3a68838dda4f90a3493f5bf3e05976~mv2.webp',
@@ -93,24 +101,26 @@ export const places = [
         'p10',
         'Zakłady Thonet Mundus',
         'https://static.wixstatic.com/media/235da6_e9d620b9739740a99bae9dd4d7c6bd41~mv2.png/v1/fill/w_708,h_462,al_c,lg_1,q_95/235da6_e9d620b9739740a99bae9dd4d7c6bd41~mv2.webp',
-        'W latach 80-tych XIX w. pochodzący z Wiednia bracia Thonet założyli w naszym mieście pierwszą w zaborze rosyjskim fabrykę mebli giętych, której wyroby wkrótce podbiły całe Imperium Rosyjskie. Przed I Wojną Światową zatrudnionych było tam ok. 1000 robotników, a w czasie II Wojny Światowej pracował tam także Tadeusz Różewicz. Tak o tym pisze: poszedłem do pracy w stolarni fabryki mebli Thonet jako rzeczoznawca od mioteł (gęstość, ścisłość, ostrość). Być może był świadkiem akcji ZWZ, którego członkowie w 1941 r. podłożyli w zakładach ładunki wybuchowe. Tadeusz pracował tam do czerwca 1943 r. Gdy rodzina Różewiczów przeniosła się do Częstochowy był już, podobnie jak jego starszy brat, żołnierzem AK.',
+        'W latach 80-tych XIX w. pochodzący z Wiednia bracia Thonet założyli w naszym mieście pierwszą w zaborze rosyjskim fabrykę mebli giętych, której wyroby wkrótce podbiły całe Imperium Rosyjskie. Przed I Wojną Światową zatrudnionych było tam ok. 1000 robotników, a w czasie II Wojny Światowej pracował tam także Tadeusz Różewicz. Tak o tym pisze: "poszedłem do pracy w stolarni fabryki mebli Thonet jako rzeczoznawca od mioteł (gęstość, ścisłość, ostrość)". Gdy rodzina Różewiczów przeniosła się do Częstochowy był już, podobnie jak jego starszy brat, żołnierzem AK.',
         51.074589,
         19.438845,
     ),
     new Place(
         'p11',
-        'Plac 3 maja',
+        'Plac 3 Maja',
         'https://static.wixstatic.com/media/235da6_d99134ae726347c48e3eea46db458ace~mv2.jpg/v1/fill/w_708,h_463,al_c,q_90/235da6_d99134ae726347c48e3eea46db458ace~mv2.webp',
         'Plac 3 Maja, czyli radomszczański Rynek, którego wygląd bardzo zmienił się od czasów Różewiczów. W wyniku bombardowań zniknęły budynki ul. Mineralnej, pensja Jadwigi Chomicz, ale na szczęście ocalał Ratusz i biała Fara do wież której celowali Rosjanie w 1945 r. To z Rynku wyjeżdżali Różewiczowie na letnisko do Gabrielowa. To tam podziwiali defilady 3-Majowe, pokazy strażackie, czy też kupowali gazety w starym kiosku.',
         51.067400,
         19.444264,
         'https://static.wixstatic.com/media/235da6_6617677fade44d959c9850cbd5cecdeb~mv2.jpg/v1/fill/w_708,h_800,al_c,q_90/235da6_6617677fade44d959c9850cbd5cecdeb~mv2.webp',
-        ),
+    ),
     new Place(
         'p12',
         'Mural na kamienicy przy ul. Reymonta 11',
         'https://static.wixstatic.com/media/235da6_eb5889c5ec264a4fbe8b3bd660d0f08c~mv2.jpg/v1/fill/w_708,h_942,al_c,q_90/235da6_eb5889c5ec264a4fbe8b3bd660d0f08c~mv2.webp',
-        'Autorem projektu jest Aleksander Kursiewicz, który w 2015 r. stworzył plastyczną interpretację cytatu z „Kartoteki” Różewicza: "długo wędrowałem zanim doszedłem do siebie."',
+        'Autorem projektu jest Aleksander Kursiewicz, który w 2015 r. stworzył plastyczną interpretację cytatu z „Kartoteki” Różewicza:\n' +
+        '\n' +
+        '"Długo wędrowałem zanim doszedłem do siebie."',
         51.067479,
         19.442068,
     ),
@@ -118,7 +128,7 @@ export const places = [
         'p13',
         'Miejski Dom Kultury',
         'https://static.wixstatic.com/media/235da6_fbf53996b4ef4e27b519f4d34e2c65e1~mv2.jpg/v1/fill/w_708,h_882,al_c,q_90/235da6_fbf53996b4ef4e27b519f4d34e2c65e1~mv2.webp',
-        'Miejski Dom Kultury powstał w 1968 r. na miejscu dawnego Placu Francuskiego, na którym pani Stefania Różewicz robiła codzienne zakupy. Dzisiaj na jego patio możemy obejrzeć rzeźbę krzesła reżyserskiego zadedykowanego Stanisławowi Różewiczowi i płaskorzeźbę Tadeusza Różewicza zaprojektowaną,wykonaną i ufundowaną przez Iwone Łyś-Dobradin.',
+        'Miejski Dom Kultury powstał w 1968 r. na miejscu dawnego Placu, na którym pani Stefania Różewicz robiła codzienne zakupy. Dzisiaj na jego patio możemy obejrzeć rzeźbę krzesła reżyserskiego zadedykowanego Stanisławowi Różewiczowi i płaskorzeźbę Tadeusza Różewicza zaprojektowaną, wykonaną i ufundowaną przez Iwone Łyś-Dobradin.',
         51.065072,
         19.442201,
     ),
@@ -142,7 +152,7 @@ export const places = [
         'p16',
         'Klasztor ojców Franciszkanów',
         'https://static.wixstatic.com/media/235da6_81368f25103345b99b64686cfeda93eb~mv2.jpg/v1/fit/w_609,h_750,al_c,q_20/file.jpg',
-        'Powstał w XIV w. za panowania Władysława Łokietka, w jego murach miały miejsce 2 zjazdy szlachty polskiej na których wybrano Jadwigę Andegaweńską na Króla Polski. Odbudowany po pożarze w XVIII w. w stylu barokowym. Bracia Różewiczowie mijali go codziennie wracając ze szkoły.',
+        'Powstał w XIV w. za panowania Władysława Łokietka, w jego murach miały miejsce 2 zjazdy szlachty polskiej w 1382 r. i 1384 r. na których wybrano Jadwigę Andegaweńską na Króla Polski. Odbudowany po pożarze w XVIII w. w stylu barokowym. Bracia Różewiczowie mijali go codziennie wracając ze szkoły.',
         51.070055,
         19.444992,
         'https://static.wixstatic.com/media/235da6_adde798cc2d340a3b5aa7a8b25d294fd~mv2.jpg/v1/fill/w_708,h_530,al_c,q_90/235da6_adde798cc2d340a3b5aa7a8b25d294fd~mv2.webp'

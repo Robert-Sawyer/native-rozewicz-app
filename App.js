@@ -1,6 +1,6 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { createStore, combineReducers, applyMiddleware } from "redux"
-import {Provider} from "react-redux"
+import { Provider } from "react-redux"
 import Thunk from 'redux-thunk'
 import * as Font from 'expo-font'
 import AppLoading from "expo-app-loading"

@@ -1,6 +1,20 @@
-import React, { useState, useEffect, useReducer, useCallback } from 'react'
+import React, {
+    useState,
+    useEffect,
+    useReducer,
+    useCallback
+} from 'react'
 import { useDispatch } from "react-redux"
-import { View, Text, Button, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import {
+    View,
+    Text,
+    Button,
+    StyleSheet,
+    ActivityIndicator,
+    TouchableOpacity,
+    ScrollView,
+    Alert
+} from 'react-native'
 import Colors from '../constants/colors'
 import Input from "../components/UI/Input"
 import * as authActions from '../store/actions/auth'

@@ -6,7 +6,7 @@ import {
     StyleSheet
 } from 'react-native'
 
-const UserScreenButton = ({onSelect, children}) => {
+const UserScreenButton = ({ onSelect, children }) => {
 
     return (
         <View style={styles.mainContainer}>

@@ -1,5 +1,13 @@
-import React, {useEffect, useReducer} from 'react'
-import {View, Text, TextInput, StyleSheet} from 'react-native'
+import React, {
+    useEffect,
+    useReducer
+} from 'react'
+import {
+    View,
+    Text,
+    TextInput,
+    StyleSheet
+} from 'react-native'
 
 const INPUT_CHANGE = 'INPUT_CHANGE'
 const INPUT_BLUR = 'INPUT_BLUR'
@@ -57,17 +65,21 @@ const Input = props => {
             errorTextMessage = 'Wprowadzone hasło jest za krótkie'
         }
 
-        dispatch({type: INPUT_CHANGE, value: text, isValid: isValid})
+        dispatch({
+            type: INPUT_CHANGE,
+            value: text,
+            isValid: isValid
+        })
     }
 
     const handleLostFocus = () => {
-        dispatch({type: INPUT_BLUR})
+        dispatch({ type: INPUT_BLUR })
     }
 
     return (
         <View style={styles.formControl}>
             <Text style={styles.label}>{props.label}</Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={styles.inputContainer}>
                 <TextInput
                     {...props}
                     style={styles.input}
@@ -92,6 +104,9 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: 'open-sans-bold',
         marginVertical: 8,
+    },
+    inputContainer: {
+        flexDirection: 'row',
     },
     input: {
         paddingHorizontal: 2,

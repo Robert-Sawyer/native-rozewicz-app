@@ -1,5 +1,11 @@
 import React from "react"
-import { FlatList, View, SafeAreaView, Platform, StyleSheet } from 'react-native'
+import {
+    FlatList,
+    View,
+    SafeAreaView,
+    Platform,
+    StyleSheet
+} from 'react-native'
 import { HeaderButtons, Item } from "react-navigation-header-buttons"
 import { places } from "../data/placesData"
 import PlaceItem from "../components/PlaceItem"
@@ -31,9 +37,12 @@ const PlacesListScreen = (props) => {
             <View style={styles.container}>
 
                 <View style={styles.buttonContainer}>
-                    <CustomButton onSelect={() => {
-                        props.navigation.navigate('AllPlacesMap')
-                    }}>Przełącz na mapę</CustomButton>
+                    <CustomButton
+                        onSelect={() => {
+                            props.navigation.navigate('AllPlacesMap')
+                        }}>
+                        Przełącz na mapę
+                    </CustomButton>
                 </View>
                 <View style={styles.placesContainer}>
                     <FlatList
@@ -67,10 +76,11 @@ export const placesListOptions = navData => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%'
+        width: '100%',
+        alignItems: 'center',
     },
     buttonContainer: {
-        width: '100%',
+        width: '80%',
         height: 70,
         paddingTop: 7,
         justifyContent: 'center',
