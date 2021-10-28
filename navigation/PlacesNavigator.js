@@ -1,17 +1,18 @@
 import React from 'react'
-import {Platform, View, Button, SafeAreaView} from 'react-native'
-import {createStackNavigator} from "@react-navigation/stack"
-import {createDrawerNavigator, DrawerItemList} from "@react-navigation/drawer"
-import {Ionicons} from "@expo/vector-icons"
-import PlacesListScreen, {placesListOptions} from "../screens/PlacesListScreen"
-import MapScreen, {mapOptions} from "../screens/MapScreen"
-import SinglePlaceScreen, {singlePlaceOptions} from "../screens/SinglePlaceScreen"
-import AllPlacesMapScreen, {allPlacesMapOptions} from "../screens/AllPlacesMapScreen"
-import AuthScreen, {authOptions} from "../screens/AuthScreen"
-import UserScreen, {userAccountOptions} from "../screens/UserScreen"
+import { Platform, View, Button, SafeAreaView } from 'react-native'
+import { createStackNavigator } from "@react-navigation/stack"
+import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer"
+import { Ionicons } from "@expo/vector-icons"
+import PlacesListScreen, { placesListOptions } from "../screens/PlacesListScreen"
+import MapScreen, { mapOptions } from "../screens/MapScreen"
+import SinglePlaceScreen, { singlePlaceOptions } from "../screens/SinglePlaceScreen"
+import AllPlacesMapScreen, { allPlacesMapOptions } from "../screens/AllPlacesMapScreen"
+import AuthScreen, { authOptions } from "../screens/AuthScreen"
+import UserScreen, { userAccountOptions } from "../screens/UserScreen"
 import Colors from '../constants/colors'
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 import * as authActions from '../store/actions/auth'
+import StartUpScreen from '../screens/StartUpScreen'
 
 const defaultNavOption = {
     headerStyle: {
@@ -55,6 +56,20 @@ export const PlacesNavigator = () => {
     )
 }
 
+const StartStackNavigator = createStackNavigator()
+
+export const StartNavigator = () => {
+
+    return (
+        <StartStackNavigator.Navigator screenOptions={defaultNavOption}>
+            <StartStackNavigator.Screen
+                name='StartUp'
+                component={StartUpScreen}
+            />
+        </StartStackNavigator.Navigator>
+    )
+}
+
 const UserStackNavigator = createStackNavigator()
 
 export const UserNavigator = () => {
@@ -79,7 +94,7 @@ export const MainNavigator = () => {
             drawerContent={
                 props => {
                     return (
-                        <View style={{flex: 1, paddingTop: 40}}>
+                        <View style={{ flex: 1, paddingTop: 40 }}>
                             <SafeAreaView forceInset={{top: 'always', horizontal: 'never'}}>
                                 <DrawerItemList {...props}/>
                                 <Button title='Wyloguj' color={Colors.mainColor} onPress={() => {
@@ -90,7 +105,7 @@ export const MainNavigator = () => {
                     )
                 }
             }
-            drawerContentOptions={{activeTintColor: Colors.mainColor}}
+            drawerContentOptions={{ activeTintColor: Colors.mainColor }}
         >
             <PlacesDrawerNavigator.Screen name='Places' component={PlacesNavigator} options={{
                 title: 'Miejsca',
